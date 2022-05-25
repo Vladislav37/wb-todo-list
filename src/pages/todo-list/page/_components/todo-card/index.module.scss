@@ -1,0 +1,22 @@
+@import "@wildberries/ui-kit/lib/styles/constants.module.scss";
+@import "@wildberries/ui-kit/lib/styles/media.module.scss";
+
+.Todo-card {
+  align-items: center;
+  background-color: $White;
+  border: 1px solid rgb(127, 126, 126);
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  margin: 5px;
+  width: 750px;
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+

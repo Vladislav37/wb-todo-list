@@ -1,0 +1,31 @@
+.template_repo: &repo
+  project: "devops/ci/templates"
+  ref: &ci_tmpl_vers "feature-v3.0.1-supp-front"
+
+variables:
+  # hold pls
+  CI_TMPL_PROJECT_VERSION: *ci_tmpl_vers
+  # ci vars
+  DOCKERFILE_DIR: ./config/deploy/docker
+  UNIVERSAL_IMAGE: harbor.wildberries.ru/portals/devops/node
+  UNIVERSAL_VER: "14.18.1"
+  CI_TMPL_HELM_CHART_NAME: common-deploy
+  CI_TMPL_HELM_CHART_VERSION: 2.0.21
+  # list of services for build & deploy
+  CI_TMPL_HELM_RELEASE_NAMES: "feedback-questions-front"
+  CI_TMPL_HELM_RELEASE_NAMESPACE: frontend-services
+  # list of clusters for deploy
+  CI_TMPL_KUBE_CLUSTERS_DEV: "k8s.dldevel"
+  CI_TMPL_KUBE_CLUSTERS_STAGE: "k8s.stage-dp,k8s.stage"
+  CI_TMPL_KUBE_CLUSTERS_PROD: "k8s.prod-dl,k8s.prod-dp,k8s.datapro,k8s.dataline"
+  # front vars
+  APP_STATIC_NAMESPACE: feedback-questions-front
+  CDN_API_TOKEN: 7833fe70-6e1e-4651-820c-ba0c53271a8d
+  WB_STATIC_URL: https://mstatic.wbstatic.net
+  SERVICE_URL: http://api.render-go.svc.k8s.datapro
+
+  REGISTRY_PROJECT: portals
+  VAULT_JWT_AUTH: "jwt"
+
+include:
+  - {<<: *repo, file: /pipelines/supp-front-tbd.yml}
