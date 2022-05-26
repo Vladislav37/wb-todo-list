@@ -76,9 +76,8 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
       <div className={cn(`${BLOCK_NAME}__tasks`)}>
         {todoList.todos.length > 0 &&
           todoList.todos.map((td: TodoType) => (
-            <div>
+            <div key={td.id}>
               <TodoCard
-                key={td.id}
                 deleteClick={deleteClickForForm}
                 description={td.description}
                 id={td.id}
