@@ -3,7 +3,7 @@
 
 .Todo-card {
   align-items: center;
-  background-color: $White;
+  background-color: rgb(254, 234, 150);
   border: 1px solid rgb(127, 126, 126);
   border-radius: 20px;
   box-sizing: border-box;
@@ -16,7 +16,13 @@
   &__buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    margin: 5px;
   }
+}
+
+.Todo-card__editable {
+  background-color: rgb(253, 221, 95);
+
 }
 

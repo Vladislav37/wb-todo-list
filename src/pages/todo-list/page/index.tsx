@@ -30,7 +30,7 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
   const showFormForNewTaskHundler = () => setShowFormForNewTask(true);
   const cancelClickForForm = () => setShowFormForNewTask(false);
 
-  const submitClickForForm = useCallback(
+  const createClickForForm = useCallback(
     (item: TodoType) => {
       dispatch(createTodoItemAction(item));
     },
@@ -44,7 +44,7 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
     [dispatch],
   );
 
-  const saveClickForForm = useCallback(
+  const updateClickForForm = useCallback(
     (item: TodoType) => {
       dispatch(updateTodoItemAction(item));
     },
@@ -57,16 +57,17 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
         {showFormForNewTask ? (
           <TodoCard
             cancelClick={cancelClickForForm}
+            createClick={createClickForForm}
             description=""
             id={null}
             name=""
-            submitClick={submitClickForForm}
           />
         ) : (
           <ButtonLink
             onClick={showFormForNewTaskHundler}
             text="Создать таску"
             type="button"
+            variant="add"
           />
         )}
       </div>
@@ -77,9 +78,9 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
               key={td.id}
               deleteClick={deleteClickForForm}
               description={td.description}
-              editClick={saveClickForForm}
               id={td.id}
               name={td.name}
+              updateClick={updateClickForForm}
             />
           ))}
       </div>
