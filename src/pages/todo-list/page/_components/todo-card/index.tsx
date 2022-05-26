@@ -1,7 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import classnames from 'classnames/bind';
 import { Field, Form } from 'react-final-form';
-import { ButtonLink } from '@wildberries/ui-kit';
+import {
+  ButtonLink,
+  FormSimpleInput,
+  FormTextAreaInput,
+} from '@wildberries/ui-kit';
 import styles from './index.module.scss';
 
 type PropsType = {
@@ -66,67 +70,72 @@ export const TodoCard = ({
           form.reset();
         }}
         render={({ handleSubmit, values }) => (
-          <form onSubmit={handleSubmit}>
-            <div>
-              <Field component="input" name="id" type="hidden" />
-            </div>
-            <div>
-              <label>Наименование:</label>
-              <Field
-                component="input"
-                disabled={!editableTask && id}
-                name="name"
-                placeholder="Наименование таски"
-                type="text"
-              />
-              {/* <Field name="name">
-                {(props) => (
-                  <SimpleInput id="2" name={props.name} value={name} />
-                )}
-              </Field> */}
-            </div>
-            <div>
-              <label>Описание:</label>
-              <Field
-                component="input"
-                disabled={!editableTask && id}
-                name="description"
-                placeholder="Описание таски"
-                type="text"
-              />
-              {/* <SimpleInput
-                id="3"
-                name="description"
-                readOnly={false}
-                value={description}
-              /> */}
+          <form className={cn(`${BLOCK_NAME}__form`)} onSubmit={handleSubmit}>
+            <Field component="input" name="id" type="hidden" />
+            <div className={cn('form__fields')}>
+              <div className={cn('field')}>
+                <Field
+                  component={FormSimpleInput}
+                  disabled={!editableTask && id}
+                  label="Name:"
+                  name="name"
+                  placeholder="Name task"
+                />
+              </div>
+              <div className={cn('field')}>
+                <Field
+                  component={FormTextAreaInput}
+                  disabled={!editableTask && id}
+                  label="Description:"
+                  name="description"
+                  placeholder="Description task"
+                />
+              </div>
             </div>
             <div className={cn(`${BLOCK_NAME}__buttons`)}>
-              {!id && <ButtonLink text="Save" type="submit" variant="add" />}
-              {id && (
-                <ButtonLink
-                  onClick={editClickHandler(editableTask, values)}
-                  text={editableTask ? 'Update' : 'Edit'}
-                  type="button"
-                  variant="add"
-                />
-              )}
-              {!id && (
-                <ButtonLink
-                  onClick={cancelClick}
-                  text="Cancel"
-                  type="button"
-                  variant="remove"
-                />
-              )}
-              {id && (
-                <ButtonLink
-                  onClick={deleteClickHandler(editableTask, values)}
-                  text={editableTask ? 'Cancel' : 'Delete'}
-                  type="button"
-                  variant="remove"
-                />
-              )}
+              <div className={cn('button')}>
+                {!id && (
+                  <ButtonLink
+                    size="small"
+                    text="Save"
+                    type="submit"
+                    variant="add"
+                  />
+                )}
+              </div>
+              <div className={cn('button')}>
+                {id && (
+                  <ButtonLink
+                    onClick={editClickHandler(editableTask, values)}
+                    size="small"
+                    text={editableTask ? 'Update' : 'Edit'}
+                    type="button"
+                    variant="add"
+                  />
+                )}
+              </div>
+              <div className={cn('button')}>
+                {!id && (
+                  <ButtonLink
+                    onClick={cancelClick}
+                    size="small"
+                    text="Cancel"
+                    type="button"
+                    variant="remove"
+                  />
+                )}
+              </div>
+              <div className={cn('button')}>
+                {id && (
+                  <ButtonLink
+                    onClick={deleteClickHandler(editableTask, values)}
+                    size="small"
+                    text={editableTask ? 'Cancel' : 'Delete'}
+                    type="button"
+                    variant="remove"
+                  />
+                )}
+              </div>
             </div>
           </form>
         )}

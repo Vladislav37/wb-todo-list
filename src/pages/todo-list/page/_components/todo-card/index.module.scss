@@ -8,10 +8,9 @@
   border-radius: 20px;
   box-sizing: border-box;
   display: flex;
-  height: 150px;
   justify-content: center;
   margin: 5px;
-  width: 750px;
+  min-width: 45%;
 
   &__buttons {
     display: flex;
@@ -19,10 +18,37 @@
     justify-content: center;
     margin: 5px;
   }
+
+  &__form {
+    width: 100%;
+  }
 }
 
 .Todo-card__editable {
   background-color: rgb(253, 221, 95);
-
 }
 
+.form__fields {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px;
+}
+
+.field {
+
+  margin: 5px;
+  width: 100%;
+}
+
+.button {
+  margin: 0 5px;
+}
+
+@media (max-width: 480px) {
+  .field {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

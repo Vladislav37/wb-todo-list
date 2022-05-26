@@ -65,7 +65,7 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
         ) : (
           <ButtonLink
             onClick={showFormForNewTaskHundler}
-            text="Создать таску"
+            text="Create task"
             type="button"
             variant="add"
           />

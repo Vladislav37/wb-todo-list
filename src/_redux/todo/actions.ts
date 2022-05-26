@@ -22,7 +22,10 @@ export const createTodoItemAction: IReduxAction<
 createTodoItemAction.type = CREATE_TODO_ITEM_ACTION;
 
 export const UPDATE_TODO_ITEM = 'UPDATE_TODO_ITEM';
-export const updateTodoItemAction = (payload) => ({
+export const updateTodoItemAction: IReduxAction<
+  TodoType,
+  typeof UPDATE_TODO_ITEM
+> = (payload) => ({
   type: UPDATE_TODO_ITEM,
   payload,
 });
