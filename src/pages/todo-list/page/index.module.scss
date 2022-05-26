@@ -14,16 +14,56 @@
     height: 300px;
     justify-content: center;
     width: 100%;
+
+    & > div {
+      align-self: center;
+      padding: 5px;
+      width: 49%;
+    }
   }
 
   &__tasks {
     align-content: flex-start;
     background-color: rgb(243, 210, 166);
     display: flex;
-    flex-flow: row wrap;
+    flex-wrap: wrap;
     height: calc(100% - 250px);
     justify-content: flex-start;
     overflow-y: auto;
     width: 100%;
+
+    & > div {
+      padding: 5px;
+      width: 49%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .Todo-page {
+    &__header {
+      align-items: normal;
+
+      & > div {
+        min-width: 240px;
+      }
+    }
+
+    &__tasks {
+      flex-flow: column nowrap;
+
+      & > div {
+        min-width: 240px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .Todo-page {
+    &__tasks {
+      align-items: center;
+      flex-flow: column nowrap;
+    }
   }
 }

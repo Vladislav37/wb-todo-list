@@ -55,13 +55,15 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
     <div className={cn(BLOCK_NAME)} data-page="todo-page">
       <div className={cn(`${BLOCK_NAME}__header`)}>
         {showFormForNewTask ? (
-          <TodoCard
-            cancelClick={cancelClickForForm}
-            createClick={createClickForForm}
-            description=""
-            id={null}
-            name=""
-          />
+          <div>
+            <TodoCard
+              cancelClick={cancelClickForForm}
+              createClick={createClickForForm}
+              description=""
+              id={null}
+              name=""
+            />
+          </div>
         ) : (
           <ButtonLink
             onClick={showFormForNewTaskHundler}
@@ -74,14 +76,16 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
       <div className={cn(`${BLOCK_NAME}__tasks`)}>
         {todoList.todos.length > 0 &&
           todoList.todos.map((td: TodoType) => (
-            <TodoCard
-              key={td.id}
-              deleteClick={deleteClickForForm}
-              description={td.description}
-              id={td.id}
-              name={td.name}
-              updateClick={updateClickForForm}
-            />
+            <div>
+              <TodoCard
+                key={td.id}
+                deleteClick={deleteClickForForm}
+                description={td.description}
+                id={td.id}
+                name={td.name}
+                updateClick={updateClickForForm}
+              />
+            </div>
           ))}
       </div>
     </div>
