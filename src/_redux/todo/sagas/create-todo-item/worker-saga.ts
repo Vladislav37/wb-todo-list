@@ -13,6 +13,7 @@ export function* createTodoItemWorkerSaga(item: TodoType) {
   try {
     const allTodos = yield select(getCurrentTodoList);
     yield put(
+      // нельзя как параметр вызов функции - извлеки в переменную вызов updateIsLoadingStateForTodoList
       setTodoItemLoadingAction(
         updateIsLoadingStateForTodoList(allTodos, item.id, true),
       ),
@@ -42,6 +43,7 @@ export function* createTodoItemWorkerSaga(item: TodoType) {
       }),
     );
   } finally {
+    // отбиваем enter вызоз от объявления
     const allTodos = yield select(getCurrentTodoList);
     yield put(
       setTodoItemLoadingAction(

@@ -5,6 +5,7 @@ import { createTodoItemWorkerSaga } from './worker-saga';
 export const CREATE_TODO_ITEM_WATCHER_SAGA_NAME =
   'CREATE_TODO_ITEM_WATCHER_SAGA_NAME';
 
+// create-todo-item-watcher-saga.ts
 export function* createTodoItemWatcherSaga() {
   while (true) {
     const { payload }: ReturnType<typeof createTodoItemAction> = yield take(

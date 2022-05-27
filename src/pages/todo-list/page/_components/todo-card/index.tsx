@@ -13,16 +13,17 @@ type PropsType = {
   name: string;
   description: string;
   isLoading: boolean;
-  cancelClick?: any;
-  createClick?: any;
-  updateClick?: any;
-  deleteClick?: any;
+  cancelClick?: any; // restricted
+  createClick?: any; // restricted
+  updateClick?: any; // restricted
+  deleteClick?: any; // restricted
 };
 
 const cn = classnames.bind(styles);
 
 const BLOCK_NAME = 'Todo-card';
 
+// memo и все функц компоненты завернуть в memo
 export const TodoCard = ({
   id,
   name,
@@ -35,6 +36,7 @@ export const TodoCard = ({
 }: PropsType) => {
   const [editableTask, setEditableTask] = useState(false);
 
+  // лишнее каррирование
   const editClickHandler = useCallback(
     (editFlag, values) => () => {
       if (editFlag) {
@@ -47,6 +49,7 @@ export const TodoCard = ({
     [updateClick],
   );
 
+  // лишнее каррирование
   const deleteClickHandler = useCallback(
     (editFlag, values) => () => {
       if (editFlag) {
@@ -62,12 +65,16 @@ export const TodoCard = ({
     <div
       className={cn([
         `${BLOCK_NAME}`,
+        // изучи как работает classnames
         `${editableTask || !id ? `${BLOCK_NAME}__editable` : ''}`,
       ])}
     >
       <Form
         initialValues={{ id, name, description, isLoading }}
         onSubmit={async (values, form) => {
+          // вынести логику сабмита в контейнер
+          // на каждый рендер создается новая ссылка в рендере
+          // еще и асинхронная не понятно зачем то
           createClick({ ...values });
           form.reset();
         }}
@@ -77,6 +84,7 @@ export const TodoCard = ({
               <div className={cn('field')}>
                 <Field
                   component={FormSimpleInput}
+                  // usememo
                   disabled={!editableTask && id}
                   label="Name:"
                   name="name"
@@ -87,15 +95,19 @@ export const TodoCard = ({
               <div className={cn('field')}>
                 <Field
                   component={FormTextAreaInput}
+                  // usememo
                   disabled={!editableTask && id}
                   label="Description:"
                   name="description"
                   placeholder="Description task"
                   required
+                  // validations wanted
                 />
               </div>
             </div>
             <div className={cn(`${BLOCK_NAME}__buttons`)}>
+              {/* not BEM */}
+              {/* четыре кнопки можно написать меньшим кол-вом кнопок */}
               <div className={cn('button')}>
                 {!id && (
                   <ButtonLink

@@ -34,6 +34,7 @@ export function* deleteTodoItemWorkerSaga(item: TodoType) {
     yield put(
       setModalAction({
         status: 'error',
+        // title напиши человечий
         text: error.message,
       }),
     );

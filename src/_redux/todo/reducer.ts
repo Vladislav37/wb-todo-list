@@ -12,6 +12,7 @@ const reducer = (state: TodoInitialState = initialState, { type, payload }) => {
         ...state,
         todos: payload.todos,
       };
+    // делает тоже самое что и fetchTodoListAction
     case setTodoItemLoadingAction.type:
       return {
         ...state,

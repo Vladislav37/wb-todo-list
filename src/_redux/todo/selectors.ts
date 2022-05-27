@@ -5,6 +5,7 @@ import { TodoInitialState, TodoType } from './types';
 export const todoListStorageSelector = (store: TodoInitialState) =>
   store[REDUCER_TODOLIST_NAME] || initialState;
 
+// createSelector from reselect lib
 export const getCurrentTodoList = (
   store: TodoInitialState,
 ): Array<TodoType> => {
