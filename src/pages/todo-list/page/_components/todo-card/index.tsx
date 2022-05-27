@@ -51,6 +51,7 @@ export const TodoCard = ({
 
   // лишнее каррирование
   const deleteClickHandler = useCallback(
+    // несколько парамеров передаются объектом
     (editFlag, values) => () => {
       if (editFlag) {
         setEditableTask(false);
