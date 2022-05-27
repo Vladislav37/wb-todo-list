@@ -1,4 +1,4 @@
-import { FETCH_TODOLIST_ACTION } from './actions';
+import { fetchTodoListAction, setTodoItemLoadingAction } from './actions';
 import { TodoInitialState } from './types';
 
 export const initialState: TodoInitialState = {
@@ -7,10 +7,15 @@ export const initialState: TodoInitialState = {
 
 const reducer = (state: TodoInitialState = initialState, { type, payload }) => {
   switch (type) {
-    case FETCH_TODOLIST_ACTION:
+    case fetchTodoListAction.type:
       return {
         ...state,
         todos: payload.todos,
+      };
+    case setTodoItemLoadingAction.type:
+      return {
+        ...state,
+        todos: payload,
       };
     default:
       return state;

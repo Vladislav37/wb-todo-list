@@ -6,29 +6,22 @@
   },
   "todos": [
     {
-      "id": "UKV4H",
-      "name": "gfdgdf",
-      "description": "gdffg"
+      "id": "LwiOh",
+      "name": "ааа",
+      "description": "ааа",
+      "isLoading": false
     },
     {
-      "id": "dX4Fb",
-      "name": "gdfggf",
-      "description": "gfdgfdgdf"
+      "id": "uleK4",
+      "name": "ааа",
+      "description": "аааа",
+      "isLoading": false
     },
     {
-      "id": "PXIko",
-      "name": "2f3f2f2f4",
-      "description": "ffsdfd"
-    },
-    {
-      "id": "BbbI9",
-      "name": "fdsfds",
-      "description": "fsdfds"
-    },
-    {
-      "id": "81kgQ",
-      "name": "fdsfds",
-      "description": "dfsdf"
+      "id": "vfMos",
+      "name": "аааа",
+      "description": "ааа",
+      "isLoading": false
     }
   ]
 }

@@ -4,6 +4,7 @@ export type TodoType = {
   id?: string;
   name?: string;
   description?: string;
+  isLoading?: boolean;
 };
 
 export type TodoInitialState = {

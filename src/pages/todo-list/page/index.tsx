@@ -61,6 +61,7 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
               createClick={createClickForForm}
               description=""
               id={null}
+              isLoading={false}
               name=""
             />
           </div>
@@ -81,6 +82,7 @@ export const WrappedContainer = ({ todoList }: PropsType) => {
                 deleteClick={deleteClickForForm}
                 description={td.description}
                 id={td.id}
+                isLoading={td.isLoading}
                 name={td.name}
                 updateClick={updateClickForForm}
               />

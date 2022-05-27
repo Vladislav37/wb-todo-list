@@ -12,6 +12,7 @@ type PropsType = {
   id: string;
   name: string;
   description: string;
+  isLoading: boolean;
   cancelClick?: any;
   createClick?: any;
   updateClick?: any;
@@ -26,6 +27,7 @@ export const TodoCard = ({
   id,
   name,
   description,
+  isLoading,
   createClick,
   updateClick,
   cancelClick,
@@ -64,14 +66,13 @@ export const TodoCard = ({
       ])}
     >
       <Form
-        initialValues={{ id, name, description }}
+        initialValues={{ id, name, description, isLoading }}
         onSubmit={async (values, form) => {
-          createClick(values);
+          createClick({ ...values });
           form.reset();
         }}
         render={({ handleSubmit, values }) => (
           <form className={cn(`${BLOCK_NAME}__form`)} onSubmit={handleSubmit}>
-            <Field component="input" name="id" type="hidden" />
             <div className={cn('form__fields')}>
               <div className={cn('field')}>
                 <Field
@@ -80,6 +81,7 @@ export const TodoCard = ({
                   label="Name:"
                   name="name"
                   placeholder="Name task"
+                  required
                 />
               </div>
               <div className={cn('field')}>
@@ -89,6 +91,7 @@ export const TodoCard = ({
                   label="Description:"
                   name="description"
                   placeholder="Description task"
+                  required
                 />
               </div>
             </div>
@@ -96,6 +99,7 @@ export const TodoCard = ({
               <div className={cn('button')}>
                 {!id && (
                   <ButtonLink
+                    isLoading={isLoading}
                     size="small"
                     text="Save"
                     type="submit"
@@ -106,6 +110,7 @@ export const TodoCard = ({
               <div className={cn('button')}>
                 {id && (
                   <ButtonLink
+                    isLoading={isLoading}
                     onClick={editClickHandler(editableTask, values)}
                     size="small"
                     text={editableTask ? 'Update' : 'Edit'}
@@ -117,6 +122,7 @@ export const TodoCard = ({
               <div className={cn('button')}>
                 {!id && (
                   <ButtonLink
+                    isLoading={isLoading}
                     onClick={cancelClick}
                     size="small"
                     text="Cancel"
@@ -128,6 +134,7 @@ export const TodoCard = ({
               <div className={cn('button')}>
                 {id && (
                   <ButtonLink
+                    isLoading={isLoading}
                     onClick={deleteClickHandler(editableTask, values)}
                     size="small"
                     text={editableTask ? 'Cancel' : 'Delete'}

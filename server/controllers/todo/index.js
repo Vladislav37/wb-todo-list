@@ -17,7 +17,7 @@ const getTodoListController = async (req, res) => {
 };
 
 const createTodoItemController = async (req, res) => {
-  const { name, description } = req.body;
+  const { name, description, isLoading } = req.body;
 
   const newId = nanoid(5);
 
@@ -26,6 +26,7 @@ const createTodoItemController = async (req, res) => {
       id: newId,
       name,
       description,
+      isLoading,
     })
     .write();
 
@@ -37,12 +38,13 @@ const createTodoItemController = async (req, res) => {
       id: newId,
       name,
       description,
+      isLoading,
     },
   });
 };
 
 const updateTodoItemController = async (req, res) => {
-  const { id, name, description } = req.body;
+  const { id, name, description, isLoading } = req.body;
 
   await todoModel.find({ id }).assign({ name, description }).write();
 
@@ -54,6 +56,7 @@ const updateTodoItemController = async (req, res) => {
       id,
       name,
       description,
+      isLoading,
     },
   });
 };
