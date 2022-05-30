@@ -11,35 +11,32 @@
   justify-content: center;
   width: 100%;
 
+  &__editable {
+    background-color: rgb(253, 221, 95);
+  }
+
   &__buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 5px;
+
+    &__button {
+      margin: 0 5px;
+    }
   }
 
   &__form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px;
     width: 100%;
+
+    &__field {
+      margin: 5px;
+      width: 100%;
+    }
   }
-}
-
-.Todo-card__editable {
-  background-color: rgb(253, 221, 95);
-}
-
-.form__fields {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 5px;
-}
-
-.field {
-  margin: 5px;
-  width: 100%;
-}
-
-.button {
-  margin: 0 5px;
 }

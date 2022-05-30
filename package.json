@@ -24,6 +24,7 @@
     "@wildberries/service-logger": "1.1.1",
     "@wildberries/service-router": "1.0.9",
     "@wildberries/ui-kit": "1.1.2-beta.57",
+    "@wildberries/validators": "^0.1.4",
     "@wildberries/webpack-config-stream": "1.6.1",
     "babel-polyfill": "6.26.0",
     "classnames": "2.3.1",

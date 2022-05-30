@@ -1,27 +1,13 @@
-{
-  "0": {
-    "id": 1,
-    "name": "первая таска",
-    "description": "описание первой таски"
+[
+  {
+    "id": "iL1Cu",
+    "name": "new task 111111",
+    "description": "new task descrip23333122"
   },
-  "todos": [
-    {
-      "id": "LwiOh",
-      "name": "ааа",
-      "description": "ааа",
-      "isLoading": false
-    },
-    {
-      "id": "uleK4",
-      "name": "ааа",
-      "description": "аааа",
-      "isLoading": false
-    },
-    {
-      "id": "vfMos",
-      "name": "аааа",
-      "description": "ааа",
-      "isLoading": false
-    }
-  ]
-}
+  {
+    "id": "nxva9",
+    "name": "ааа",
+    "description": "выфвыфв",
+    "isLoading": false
+  }
+]

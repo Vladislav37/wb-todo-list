@@ -1,5 +1,5 @@
-import { IReduxAction } from '@mihanizm56/redux-core-modules';
-import { TodoType } from './types';
+import { IReduxAction, IReduxBaseAction } from '@mihanizm56/redux-core-modules';
+import { TodoType } from './_types';
 
 export const FETCH_TODOLIST_ACTION_TYPE = 'FETCH_TODOLIST_ACTION_TYPE';
 export const fetchTodoListAction: IReduxAction<
@@ -41,13 +41,18 @@ export const deleteTodoItemAction: IReduxAction<
 });
 deleteTodoItemAction.type = DELETE_TODO_ITEM_ACTION_TYPE;
 
-export const SET_TODO_ITEM_LOADING_ACTION_TYPE =
-  'SET_TODO_ITEM_LOADING_ACTION_TYPE';
-export const setTodoItemLoadingAction: IReduxAction<
-  TodoType[],
-  typeof SET_TODO_ITEM_LOADING_ACTION_TYPE
-> = (payload) => ({
-  type: SET_TODO_ITEM_LOADING_ACTION_TYPE,
-  payload,
+export const START_LOADING_ACTION_TYPE = 'START_LOADING_ACTION_TYPE';
+export const startCardInfoLoadingAction: IReduxBaseAction<
+  typeof START_LOADING_ACTION_TYPE
+> = () => ({
+  type: START_LOADING_ACTION_TYPE,
 });
-setTodoItemLoadingAction.type = SET_TODO_ITEM_LOADING_ACTION_TYPE;
+startCardInfoLoadingAction.type = START_LOADING_ACTION_TYPE;
+
+export const STOP_LOADING_ACTION_TYPE = 'STOP_LOADING_ACTION_TYPE';
+export const stopCardInfoLoadingAction: IReduxBaseAction<
+  typeof STOP_LOADING_ACTION_TYPE
+> = () => ({
+  type: STOP_LOADING_ACTION_TYPE,
+});
+stopCardInfoLoadingAction.type = STOP_LOADING_ACTION_TYPE;

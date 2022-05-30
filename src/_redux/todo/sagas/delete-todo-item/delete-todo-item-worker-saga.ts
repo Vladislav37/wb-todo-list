@@ -3,21 +3,19 @@ import { call, put, select } from 'redux-saga/effects';
 import { initLoadManagerActionSaga } from '@mihanizm56/redux-core-modules';
 import { deleteTodoItemRequest } from '@/api/requests/todo';
 import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fetch-todo-config';
-import { TodoType } from '../../types';
-import { getCurrentTodoList } from '../../selectors';
-import { setTodoItemLoadingAction } from '../../actions';
+import { todoListSelector } from '../../selectors';
+import { fetchTodoListAction } from '../../actions';
 import { updateIsLoadingStateForTodoList } from '../../_utils';
+import { TodoType } from '../../_types';
 
-export function* deleteTodoItemWorkerSaga(item: TodoType) {
+export function* deleteTodoItemWorkerSaga({ id }: TodoType) {
   try {
-    const allTodos = yield select(getCurrentTodoList);
-    yield put(
-      setTodoItemLoadingAction(
-        updateIsLoadingStateForTodoList(allTodos, item.id, true),
-      ),
-    );
+    const allTodos = yield select(todoListSelector);
+    const updatedTodos = updateIsLoadingStateForTodoList(allTodos, id, true);
 
-    const { error, errorText } = yield call(deleteTodoItemRequest, item);
+    yield put(fetchTodoListAction(updatedTodos));
+
+    const { error, errorText } = yield call(deleteTodoItemRequest, id);
 
     if (error) {
       throw new Error(errorText);
@@ -34,16 +32,14 @@ export function* deleteTodoItemWorkerSaga(item: TodoType) {
     yield put(
       setModalAction({
         status: 'error',
-        // title напиши человечий
+        title: 'Error request!',
         text: error.message,
       }),
     );
   } finally {
-    const allTodos = yield select(getCurrentTodoList);
-    yield put(
-      setTodoItemLoadingAction(
-        updateIsLoadingStateForTodoList(allTodos, item.id, false),
-      ),
-    );
+    const allTodos = yield select(todoListSelector);
+    const updatedTodos = updateIsLoadingStateForTodoList(allTodos, id, false);
+
+    yield put(fetchTodoListAction(updatedTodos));
   }
 }

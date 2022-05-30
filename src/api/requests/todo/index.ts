@@ -5,15 +5,13 @@ import Joi from 'joi';
 export const getTodoListRequest = (): Promise<IResponse> => {
   return new RestRequest().getRequest({
     endpoint: 'http://localhost:8081/todo/getTodoList',
-    responseSchema: Joi.object({
-      todos: Joi.array().items(
-        Joi.object({
-          id: Joi.string().required(),
-          name: Joi.string().required(),
-          description: Joi.string().required(),
-        }),
-      ),
-    }),
+    responseSchema: Joi.array().items(
+      Joi.object({
+        id: Joi.string().required(),
+        name: Joi.string().required(),
+        description: Joi.string().required(),
+      }),
+    ),
   });
 };
 
@@ -45,11 +43,11 @@ export const updateTodoItemRequest = (item): Promise<IResponse> => {
   });
 };
 
-export const deleteTodoItemRequest = (item): Promise<IResponse> => {
+export const deleteTodoItemRequest = (id: string): Promise<IResponse> => {
   return new RestRequest().postRequest({
     endpoint: 'http://localhost:8081/todo/deleteTodoItem',
     body: {
-      ...item,
+      id,
     },
     responseSchema: Joi.object({
       id: Joi.string().required(),

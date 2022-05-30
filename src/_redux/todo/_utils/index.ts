@@ -1,19 +1,11 @@
-import { TodoType } from '../types';
+import { TodoType } from '../_types';
 
 export const updateIsLoadingStateForTodoList = (
   items: TodoType[],
   currentId: string,
   isLoading: boolean,
-  // utils style () => {return}
-): Array<TodoType> =>
-  items.map((item: TodoType) => {
-    // => {return item.id === currentId ? ({...item,isLoading}) : item}
-    if (item.id === currentId) {
-      return {
-        ...item,
-        isLoading,
-      };
-    }
-
-    return item;
-  });
+): Array<TodoType> => {
+  return items.map((item: TodoType) =>
+    item.id === currentId ? { ...item, isLoading } : item,
+  );
+};

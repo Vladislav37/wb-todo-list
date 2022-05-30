@@ -3,19 +3,21 @@ import { setModalAction } from '@wildberries/notifications';
 import { call, put, select } from 'redux-saga/effects';
 import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fetch-todo-config';
 import { updateTodoItemRequest } from '@/api/requests/todo';
-import { TodoType } from '../../types';
+import { TodoType } from '../../_types';
 import { updateIsLoadingStateForTodoList } from '../../_utils';
-import { getCurrentTodoList } from '../../selectors';
-import { setTodoItemLoadingAction } from '../../actions';
+import { todoListSelector } from '../../selectors';
+import { fetchTodoListAction } from '../../actions';
 
 export function* updateTodoItemWorkerSaga(item: TodoType) {
   try {
-    const allTodos = yield select(getCurrentTodoList);
-    yield put(
-      setTodoItemLoadingAction(
-        updateIsLoadingStateForTodoList(allTodos, item.id, true),
-      ),
+    const allTodos = yield select(todoListSelector);
+    const updatedTodos = updateIsLoadingStateForTodoList(
+      allTodos,
+      item.id,
+      true,
     );
+
+    yield put(fetchTodoListAction(updatedTodos));
 
     const { error, errorText } = yield call(updateTodoItemRequest, item);
 
@@ -29,20 +31,23 @@ export function* updateTodoItemWorkerSaga(item: TodoType) {
       }),
     );
   } catch (error) {
-    console.error('Error in deleteTodoItemWorkerSaga', error.message);
+    console.error('Error in updateTodoItemWorkerSaga', error.message);
 
     yield put(
       setModalAction({
         status: 'error',
+        title: 'Error request!',
         text: error.message,
       }),
     );
   } finally {
-    const allTodos = yield select(getCurrentTodoList);
-    yield put(
-      setTodoItemLoadingAction(
-        updateIsLoadingStateForTodoList(allTodos, item.id, false),
-      ),
+    const allTodos = yield select(todoListSelector);
+    const updatedTodos = updateIsLoadingStateForTodoList(
+      allTodos,
+      item.id,
+      false,
     );
+
+    yield put(fetchTodoListAction(updatedTodos));
   }
 }

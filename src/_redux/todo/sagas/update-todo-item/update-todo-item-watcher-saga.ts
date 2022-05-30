@@ -1,6 +1,6 @@
 import { fork, take } from 'redux-saga/effects';
 import { updateTodoItemAction } from '../../actions';
-import { updateTodoItemWorkerSaga } from './worker-saga';
+import { updateTodoItemWorkerSaga } from './update-todo-item-worker-saga';
 
 export const UPDATE_TODO_ITEM_WATCHER_SAGA_NAME =
   'UPDATE_TODO_ITEM_WATCHER_SAGA_NAME';

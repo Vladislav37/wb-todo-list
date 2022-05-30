@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import classnames from 'classnames/bind';
 import { Field, Form } from 'react-final-form';
 import {
@@ -6,160 +6,140 @@ import {
   FormSimpleInput,
   FormTextAreaInput,
 } from '@wildberries/ui-kit';
+import { TodoType } from '@/_redux/todo';
+import { CONTACTS_VALIDATIONS } from './_constants';
 import styles from './index.module.scss';
 
 type PropsType = {
   id: string;
-  name: string;
-  description: string;
+  name?: string;
+  description?: string;
   isLoading: boolean;
-  cancelClick?: any; // restricted
-  createClick?: any; // restricted
-  updateClick?: any; // restricted
-  deleteClick?: any; // restricted
+  cancelClick?: () => void;
+  createClick?: (params: TodoType) => void;
+  updateClick?: (params: TodoType) => void;
+  deleteClick?: (params: TodoType) => void;
 };
 
 const cn = classnames.bind(styles);
 
 const BLOCK_NAME = 'Todo-card';
 
-// memo и все функц компоненты завернуть в memo
-export const TodoCard = ({
-  id,
-  name,
-  description,
-  isLoading,
-  createClick,
-  updateClick,
-  cancelClick,
-  deleteClick,
-}: PropsType) => {
-  const [editableTask, setEditableTask] = useState(false);
+export const TodoCard = memo(
+  ({
+    id,
+    name,
+    description,
+    isLoading,
+    createClick,
+    updateClick,
+    cancelClick,
+    deleteClick,
+  }: PropsType) => {
+    const [editableTask, setEditableTask] = useState(false);
 
-  // лишнее каррирование
-  const editClickHandler = useCallback(
-    (editFlag, values) => () => {
-      if (editFlag) {
-        updateClick(values);
-        setEditableTask(false);
-      } else {
-        setEditableTask(true);
+    const disabledField = useMemo(
+      () => !editableTask && id,
+      [editableTask, id],
+    );
+
+    const textSubmitButton = useMemo(() => {
+      if (id) {
+        return editableTask ? 'Update' : 'Edit';
       }
-    },
-    [updateClick],
-  );
 
-  // лишнее каррирование
-  const deleteClickHandler = useCallback(
-    // несколько парамеров передаются объектом
-    (editFlag, values) => () => {
-      if (editFlag) {
-        setEditableTask(false);
-      } else {
-        deleteClick(values);
-      }
-    },
-    [deleteClick],
-  );
+      return 'Save';
+    }, [editableTask, id]);
 
-  return (
-    <div
-      className={cn([
-        `${BLOCK_NAME}`,
-        // изучи как работает classnames
-        `${editableTask || !id ? `${BLOCK_NAME}__editable` : ''}`,
-      ])}
-    >
-      <Form
-        initialValues={{ id, name, description, isLoading }}
-        onSubmit={async (values, form) => {
-          // вынести логику сабмита в контейнер
-          // на каждый рендер создается новая ссылка в рендере
-          // еще и асинхронная не понятно зачем то
+    // лишнее каррирование ????
+    const deleteClickHandler = useCallback(
+      (values) => () => {
+        if (editableTask) {
+          setEditableTask(false);
+        } else {
+          deleteClick(values);
+        }
+      },
+      [deleteClick, editableTask],
+    );
+
+    // как вынести в контейнер ????
+    const submitClickHandler = useCallback(
+      (values: TodoType, form: any) => {
+        if (values.id) {
+          if (editableTask) {
+            updateClick(values);
+            setEditableTask(false);
+          } else {
+            setEditableTask(true);
+          }
+        } else {
           createClick({ ...values });
           form.reset();
-        }}
-        render={({ handleSubmit, values }) => (
-          <form className={cn(`${BLOCK_NAME}__form`)} onSubmit={handleSubmit}>
-            <div className={cn('form__fields')}>
-              <div className={cn('field')}>
+        }
+      },
+      [createClick, editableTask, updateClick],
+    );
+
+    return (
+      <div
+        className={cn(
+          BLOCK_NAME,
+          `${!disabledField ? `${BLOCK_NAME}__editable` : ''}`,
+        )}
+      >
+        <Form
+          initialValues={{ id, name, description, isLoading }}
+          onSubmit={submitClickHandler}
+          render={({ handleSubmit }) => (
+            <form className={cn(`${BLOCK_NAME}__form`)} onSubmit={handleSubmit}>
+              <div className={cn(`${BLOCK_NAME}__form__field`)}>
                 <Field
                   component={FormSimpleInput}
-                  // usememo
-                  disabled={!editableTask && id}
+                  disabled={disabledField}
                   label="Name:"
                   name="name"
                   placeholder="Name task"
                   required
+                  validate={CONTACTS_VALIDATIONS.name}
                 />
               </div>
-              <div className={cn('field')}>
+              <div className={cn(`${BLOCK_NAME}__form__field`)}>
                 <Field
                   component={FormTextAreaInput}
-                  // usememo
-                  disabled={!editableTask && id}
+                  disabled={disabledField}
                   label="Description:"
                   name="description"
                   placeholder="Description task"
                   required
-                  // validations wanted
+                  validate={CONTACTS_VALIDATIONS.description}
                 />
               </div>
-            </div>
-            <div className={cn(`${BLOCK_NAME}__buttons`)}>
-              {/* not BEM */}
-              {/* четыре кнопки можно написать меньшим кол-вом кнопок */}
-              <div className={cn('button')}>
-                {!id && (
+              <div className={cn(`${BLOCK_NAME}__buttons`)}>
+                <div className={cn(`${BLOCK_NAME}__buttons__button`)}>
                   <ButtonLink
                     isLoading={isLoading}
                     size="small"
-                    text="Save"
+                    text={textSubmitButton}
                     type="submit"
                     variant="add"
                   />
-                )}
-              </div>
-              <div className={cn('button')}>
-                {id && (
+                </div>
+                <div className={cn(`${BLOCK_NAME}__buttons__button`)}>
                   <ButtonLink
-                    isLoading={isLoading}
-                    onClick={editClickHandler(editableTask, values)}
+                    onClick={id ? deleteClickHandler({ id }) : cancelClick}
                     size="small"
-                    text={editableTask ? 'Update' : 'Edit'}
-                    type="button"
-                    variant="add"
-                  />
-                )}
-              </div>
-              <div className={cn('button')}>
-                {!id && (
-                  <ButtonLink
-                    isLoading={isLoading}
-                    onClick={cancelClick}
-                    size="small"
-                    text="Cancel"
+                    text={!disabledField ? 'Cancel' : 'Delete'}
                     type="button"
                     variant="remove"
                   />
-                )}
+                </div>
               </div>
-              <div className={cn('button')}>
-                {id && (
-                  <ButtonLink
-                    isLoading={isLoading}
-                    onClick={deleteClickHandler(editableTask, values)}
-                    size="small"
-                    text={editableTask ? 'Cancel' : 'Delete'}
-                    type="button"
-                    variant="remove"
-                  />
-                )}
-              </div>
-            </div>
-          </form>
-        )}
-      />
-    </div>
-  );
-};
+            </form>
+          )}
+          subscription={{ submitting: true }}
+        />
+      </div>
+    );
+  },
+);

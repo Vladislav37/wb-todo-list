@@ -4,20 +4,21 @@ import { initLoadManagerActionSaga } from '@mihanizm56/redux-core-modules';
 import { IResponse } from '@mihanizm56/fetch-api';
 import { createTodoItemRequest } from '@/api/requests/todo';
 import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fetch-todo-config';
-import { TodoType } from '../../types';
-import { getCurrentTodoList } from '../../selectors';
-import { setTodoItemLoadingAction } from '../../actions';
+import { TodoType } from '../../_types';
+import { todoListSelector } from '../../selectors';
+import { fetchTodoListAction } from '../../actions';
 import { updateIsLoadingStateForTodoList } from '../../_utils';
 
 export function* createTodoItemWorkerSaga(item: TodoType) {
   try {
-    const allTodos = yield select(getCurrentTodoList);
-    yield put(
-      // нельзя как параметр вызов функции - извлеки в переменную вызов updateIsLoadingStateForTodoList
-      setTodoItemLoadingAction(
-        updateIsLoadingStateForTodoList(allTodos, item.id, true),
-      ),
+    const allTodos = yield select(todoListSelector);
+    const updatedTodos = updateIsLoadingStateForTodoList(
+      allTodos,
+      item.id,
+      true,
     );
+
+    yield put(fetchTodoListAction(updatedTodos));
 
     const { error, errorText }: IResponse = yield call(
       createTodoItemRequest,
@@ -39,16 +40,18 @@ export function* createTodoItemWorkerSaga(item: TodoType) {
     yield put(
       setModalAction({
         status: 'error',
+        title: 'Error request!',
         text: error.message,
       }),
     );
   } finally {
-    // отбиваем enter вызоз от объявления
-    const allTodos = yield select(getCurrentTodoList);
-    yield put(
-      setTodoItemLoadingAction(
-        updateIsLoadingStateForTodoList(allTodos, item.id, false),
-      ),
+    const allTodos = yield select(todoListSelector);
+    const updatedTodos = updateIsLoadingStateForTodoList(
+      allTodos,
+      item.id,
+      false,
     );
+
+    yield put(fetchTodoListAction(updatedTodos));
   }
 }
