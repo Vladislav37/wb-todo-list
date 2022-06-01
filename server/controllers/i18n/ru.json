@@ -1,0 +1,29 @@
+{
+  "todoPage": {
+    "title": "Todo-List",
+    "fields": {
+      "name": "Наименование:",
+      "namePlaceholder": "Наименование задачи ...",
+      "description": "Описание:",
+      "descriptionPlaceholder": "Описание задачи ..."
+    },
+    "buttons": {
+      "createTask": "Создать задачу",
+      "edit": "Изменить",
+      "delete": "Удалить",
+      "update": "Обновить",
+      "cancel": "Отмена",
+      "save": "Сохранить"
+    },
+    "errors": {
+      "status": "Ошибка",
+      "update": "Ошибка обновления задачи!",
+      "create": "Ошибка создания задачи!",
+      "delete": "Ошибка удаления задачи!"
+    },
+    "success": {
+      "title": "Это успех!",
+      "text": "Может выдохнуть и покурить :)"
+    }
+  }
+}

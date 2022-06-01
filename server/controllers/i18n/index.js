@@ -1,14 +1,23 @@
 /* eslint-disable no-console */
-const translate = require('./data.json');
+const translateRu = require('./ru.json');
+const translateEn = require('./en.json');
 
-const i18nController = async (req, res) => {
-  console.info('i18nController catch request', req.body);
+const dict = {
+  en: translateEn,
+  ru: translateRu,
+};
 
-  res.status(200).json({
-    translate,
-  });
+const i18nNamespacesController = async (req, res) => {
+  const { locale } = req.params;
+
+  // eslint-disable-next-line no-console
+  console.info('i18nNamespacesController catch request', locale);
+
+  const translate = dict[locale];
+
+  res.status(200).json({ translate });
 };
 
 module.exports = {
-  i18nController,
+  i18nNamespacesController,
 };
