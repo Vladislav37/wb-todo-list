@@ -1,19 +1,25 @@
 import { setModalAction } from '@wildberries/notifications';
 import { call, put, select } from 'redux-saga/effects';
 import { initLoadManagerActionSaga } from '@mihanizm56/redux-core-modules';
+import i18next from 'i18next';
 import { deleteTodoItemRequest } from '@/api/requests/todo';
 import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fetch-todo-config';
+import { updateIsDeletingStateForTodoList } from '@/_utils/todo';
+import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
+import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import { todoListSelector } from '../../selectors';
-import { fetchTodoListAction } from '../../actions';
-import { updateIsLoadingStateForTodoList } from '../../_utils';
-import { TodoType } from '../../_types';
+import { setUpdatedTodoItem } from '../../actions';
 
-export function* deleteTodoItemWorkerSaga({ id }: TodoType) {
+export function* deleteTodoItemWorkerSaga(id: string) {
   try {
     const allTodos = yield select(todoListSelector);
-    const updatedTodos = updateIsLoadingStateForTodoList(allTodos, id, true);
+    const updatedLoadingTodos = updateIsDeletingStateForTodoList({
+      items: allTodos,
+      currentId: id,
+      isDeleting: true,
+    });
 
-    yield put(fetchTodoListAction(updatedTodos));
+    yield put(setUpdatedTodoItem(updatedLoadingTodos));
 
     const { error, errorText } = yield call(deleteTodoItemRequest, id);
 
@@ -31,15 +37,24 @@ export function* deleteTodoItemWorkerSaga({ id }: TodoType) {
 
     yield put(
       setModalAction({
-        status: 'error',
-        title: 'Error request!',
+        status: i18next.t(
+          `${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.errors.status`,
+        ),
+        title: i18next.t(
+          `${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.errors.delete`,
+        ),
         text: error.message,
+        customHoldTimeout: 10000,
       }),
     );
   } finally {
     const allTodos = yield select(todoListSelector);
-    const updatedTodos = updateIsLoadingStateForTodoList(allTodos, id, false);
+    const updatedLoadingTodos = updateIsDeletingStateForTodoList({
+      items: allTodos,
+      currentId: id,
+      isDeleting: false,
+    });
 
-    yield put(fetchTodoListAction(updatedTodos));
+    yield put(setUpdatedTodoItem(updatedLoadingTodos));
   }
 }

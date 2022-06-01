@@ -1,13 +1,3 @@
-[
-  {
-    "id": "iL1Cu",
-    "name": "new task 111111",
-    "description": "new task descrip23333122"
-  },
-  {
-    "id": "nxva9",
-    "name": "ааа",
-    "description": "выфвыфв",
-    "isLoading": false
-  }
-]
+{
+  "todos": []
+}

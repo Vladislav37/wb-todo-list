@@ -9,7 +9,9 @@ const getTodoListController = async (req, res) => {
       error: false,
       errorText: '',
       additionalErrors: [],
-      data: todos,
+      data: {
+        todos,
+      },
     });
   }, 1000);
 };

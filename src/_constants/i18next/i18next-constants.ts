@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import { appNamespace } from '@/_constants/i18next/app-namespace';
+import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 
 export const backendErrorsSubnamespace = 'backend-errors';
 
@@ -8,5 +8,5 @@ export const requestTranslateFunction = (
   options?: Record<string, any> | null,
 ) =>
   options
-    ? i18next.t(`${appNamespace}:${backendErrorsSubnamespace}.${key}`, options)
-    : i18next.t(`${appNamespace}:${backendErrorsSubnamespace}.${key}`);
+    ? i18next.t(`${APP_NAMESPACE}:${backendErrorsSubnamespace}.${key}`, options)
+    : i18next.t(`${APP_NAMESPACE}:${backendErrorsSubnamespace}.${key}`);

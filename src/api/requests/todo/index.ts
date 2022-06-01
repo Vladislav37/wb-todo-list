@@ -5,13 +5,15 @@ import Joi from 'joi';
 export const getTodoListRequest = (): Promise<IResponse> => {
   return new RestRequest().getRequest({
     endpoint: 'http://localhost:8081/todo/getTodoList',
-    responseSchema: Joi.array().items(
-      Joi.object({
-        id: Joi.string().required(),
-        name: Joi.string().required(),
-        description: Joi.string().required(),
-      }),
-    ),
+    responseSchema: Joi.object({
+      todos: Joi.array().items(
+        Joi.object({
+          id: Joi.string().required(),
+          name: Joi.string().required(),
+          description: Joi.string().required(),
+        }),
+      ),
+    }),
   });
 };
 

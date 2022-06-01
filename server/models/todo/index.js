@@ -7,6 +7,6 @@ const adapter = new FileSync(dataJSONFilePath);
 const database = low(adapter);
 
 // Set some defaults
-database.defaults([]).write();
+database.defaults({ todos: [] }).write();
 
-module.exports.todoModel = database; // .get('todos');
+module.exports.todoModel = database.get('todos');

@@ -1,15 +1,13 @@
+import { TodoType } from '@/pages/todo-list/_types';
 import { REDUCER_TODOLIST_NAME } from './_constants';
 
-export type TodoType = {
-  id: string;
-  name: string;
-  description: string;
-  isLoading: boolean;
-};
-
 export type TodoStorageType = {
-  data: TodoType[];
-  isLoadingTasks: boolean;
+  data: {
+    todos: TodoType[];
+  };
+  areTasksLoading: boolean;
+  showFormForNewTask: boolean;
+  isNewTaskCreating: boolean;
 };
 
 export type TodoStoragePartType = {

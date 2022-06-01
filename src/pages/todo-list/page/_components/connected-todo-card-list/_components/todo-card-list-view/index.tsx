@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import classnames from 'classnames/bind';
 import { Preloader } from '@wildberries/ui-kit';
-import { TodoType } from '@/_redux/todo';
+import { SubmitClickHandlerType, TodoType } from '@/pages/todo-list/_types';
 import { TodoCard } from '../../../todo-card';
 import styles from './index.module.scss';
 
@@ -11,16 +11,16 @@ const BLOCK_NAME = 'TodoCardListView';
 
 type PropsType = {
   todoList: TodoType[];
-  onDeleteClick: (params: TodoType) => void;
-  onUpdateClick: (params: TodoType) => void;
-  isLoadingList: boolean;
+  onDeleteClick: (params: string) => void;
+  onSubmitClick: (params: SubmitClickHandlerType) => void;
+  isLoading: boolean;
 };
 
 export const TodoCardListView = memo(
-  ({ todoList, onDeleteClick, onUpdateClick, isLoadingList }: PropsType) => {
+  ({ todoList, onDeleteClick, onSubmitClick, isLoading }: PropsType) => {
     return (
       <div className={cn(BLOCK_NAME)}>
-        {isLoadingList ? (
+        {isLoading ? (
           <Preloader color="rich-grey" size="medium" />
         ) : (
           todoList.map((todo: TodoType) => (
@@ -29,9 +29,11 @@ export const TodoCardListView = memo(
                 deleteClick={onDeleteClick}
                 description={todo.description}
                 id={todo.id}
+                isDeleting={todo.isDeleting}
+                isEditable={todo.isEditable}
                 isLoading={todo.isLoading}
                 name={todo.name}
-                updateClick={onUpdateClick}
+                submitClick={onSubmitClick}
               />
             </div>
           ))

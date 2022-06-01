@@ -1,1 +1,1 @@
-export const appNamespace = '<please run "npm run setup">';
+export const APP_NAMESPACE = 'todo';
