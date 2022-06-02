@@ -16,6 +16,7 @@
       "save": "Save"
     },
     "errors": {
+      "title": "This is error, bro :(",
       "status": "error",
       "update": "Error update task!",
       "create": "Error create new task!",

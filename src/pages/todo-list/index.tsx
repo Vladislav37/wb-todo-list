@@ -21,10 +21,7 @@ const action = async ({ fromState, toState }) => {
         toState={toState}
       >
         <AppLayout>
-          <RouteNode nodeName={pageNode}>
-            {/* когда нет чилдов - можно так */}
-            {() => <Page />}
-          </RouteNode>
+          <RouteNode nodeName={pageNode}>{() => <Page />}</RouteNode>
         </AppLayout>
       </ReduxStoreLoader>
     ),

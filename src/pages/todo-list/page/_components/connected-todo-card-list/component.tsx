@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   areTasksLoadingSelector,
-  deleteTodoItemAction,
-  setUpdatedTodoItem,
+  deleteTodoItemActionSaga,
+  setUpdatedTodoItemActionSaga,
   todoListSelector,
   TodoStoragePartType,
-  updateTodoItemAction,
+  updateTodoItemActionSaga,
 } from '@/_redux/todo';
 import {
   SubmitClickHandlerParamsType,
@@ -15,13 +15,11 @@ import {
 import { updateIsEditableStateForTodoList } from '@/_utils/todo';
 import { TodoCardListView } from './_components/todo-card-list-view';
 
-// ибо [] не такой заметный как Array
-// TodoType[] => Array<TodoType[]>
 type PropsType = {
-  todoList: TodoType[];
-  handleDeleteTask: (params: string) => void;
-  handleUpdateTask: (params: TodoType) => void;
-  handleSetUpdatedTodos: (params: TodoType[]) => void;
+  todoList: Array<TodoType>;
+  deleteTask: (params: string) => void;
+  updateTask: (params: TodoType) => void;
+  setUpdatedTodos: (params: Array<TodoType>) => void;
   areTasksLoading: boolean;
 };
 
@@ -31,7 +29,7 @@ class WrappedContainer extends Component<PropsType> {
     isEditable,
   }: SubmitClickHandlerParamsType): void => {
     if (isEditable) {
-      this.props.handleUpdateTask(values);
+      this.props.updateTask(values);
 
       return;
     }
@@ -42,25 +40,24 @@ class WrappedContainer extends Component<PropsType> {
       isEditable: true,
     });
 
-    this.props.handleSetUpdatedTodos(updatedEditableTodos);
+    this.props.setUpdatedTodos(updatedEditableTodos);
   };
 
   deleteClickHandler = (id: string): void => {
-    // isEditable => isCardEditable
-    const isEditable = this.props.todoList.find(
+    const isCardEditable = this.props.todoList.find(
       (todo: TodoType) => todo.id === id,
     )?.isEditable;
 
-    if (isEditable) {
+    if (isCardEditable) {
       const updatedEditableTodos = updateIsEditableStateForTodoList({
         items: this.props.todoList,
         currentId: id,
         isEditable: false,
       });
 
-      this.props.handleSetUpdatedTodos(updatedEditableTodos);
+      this.props.setUpdatedTodos(updatedEditableTodos);
     } else {
-      this.props.handleDeleteTask(id);
+      this.props.deleteTask(id);
     }
   };
 
@@ -84,12 +81,9 @@ const mapStateToProps = (state: TodoStoragePartType) => {
 };
 
 const mapDispatchToProps = {
-  // handleDeleteTask => deleteTask
-  handleDeleteTask: deleteTodoItemAction,
-  // handleUpdateTask => updateTask
-  handleUpdateTask: updateTodoItemAction,
-  // handleSetUpdatedTodos => setUpdatedTodos
-  handleSetUpdatedTodos: setUpdatedTodoItem, // action postfix
+  deleteTask: deleteTodoItemActionSaga,
+  updateTask: updateTodoItemActionSaga,
+  setUpdatedTodos: setUpdatedTodoItemActionSaga,
 };
 
 export const ConnectedTodoCardList = connect(

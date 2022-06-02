@@ -1,11 +1,11 @@
 import {
   fetchTodoListAction,
-  setUpdatedTodoItem,
-  showFormForNewTaskAction,
+  setUpdatedTodoItemActionSaga,
+  showFormForNewTaskActionSaga,
   startCardInfoLoadingAction,
-  startCreatingNewTaskAction,
+  startCreatingNewTaskActionSaga,
   stopCardInfoLoadingAction,
-  stopCreatingNewTaskAction,
+  stopCreatingNewTaskActionSaga,
 } from './actions';
 import { TodoStorageType } from './_types';
 
@@ -28,7 +28,7 @@ const reducer = (
         ...state,
         data: payload,
       };
-    case setUpdatedTodoItem.type:
+    case setUpdatedTodoItemActionSaga.type:
       return {
         ...state,
         data: { ...state.data, todos: payload },
@@ -37,14 +37,14 @@ const reducer = (
       return { ...state, areTasksLoading: true };
     case stopCardInfoLoadingAction.type:
       return { ...state, areTasksLoading: false };
-    case showFormForNewTaskAction.type:
+    case showFormForNewTaskActionSaga.type:
       return {
         ...state,
         showFormForNewTask: payload,
       };
-    case startCreatingNewTaskAction.type:
+    case startCreatingNewTaskActionSaga.type:
       return { ...state, isNewTaskCreating: true };
-    case stopCreatingNewTaskAction.type:
+    case stopCreatingNewTaskActionSaga.type:
       return { ...state, isNewTaskCreating: false };
     default:
       return state;

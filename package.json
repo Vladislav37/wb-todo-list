@@ -8,7 +8,7 @@
     "@babel/runtime": "7.7.6",
     "@mihanizm56/fetch-api": "3.8.13",
     "@mihanizm56/react-final-form-utils": "0.0.8-beta.1",
-    "@mihanizm56/redux-core-modules": "1.5.7",
+    "@mihanizm56/redux-core-modules": "1.5.8",
     "@mihanizm56/webpack-magic-redux-modules": "0.0.6",
     "@mihanizm56/webpack-stream-watcher": "0.1.4",
     "@ravilm/databus": "1.0.2",

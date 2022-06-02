@@ -1,19 +1,19 @@
 import { TodoType } from '@/pages/todo-list/_types';
 
 type UpdateIsLoadingStateForTodoListType = {
-  items: TodoType[];
+  items: Array<TodoType>;
   currentId: string;
   isLoading: boolean;
 };
 
 type UpdateIsEditableStateForTodoList = {
-  items: TodoType[];
+  items: Array<TodoType>;
   currentId: string;
   isEditable: boolean;
 };
 
 type UpdateIsDeletingStateForTodoList = {
-  items: TodoType[];
+  items: Array<TodoType>;
   currentId: string;
   isDeleting: boolean;
 };

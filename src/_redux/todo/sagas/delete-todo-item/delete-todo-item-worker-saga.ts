@@ -8,7 +8,7 @@ import { updateIsDeletingStateForTodoList } from '@/_utils/todo';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import { todoListSelector } from '../../selectors';
-import { setUpdatedTodoItem } from '../../actions';
+import { setUpdatedTodoItemActionSaga } from '../../actions';
 
 export function* deleteTodoItemWorkerSaga(id: string) {
   try {
@@ -19,7 +19,7 @@ export function* deleteTodoItemWorkerSaga(id: string) {
       isDeleting: true,
     });
 
-    yield put(setUpdatedTodoItem(updatedLoadingTodos));
+    yield put(setUpdatedTodoItemActionSaga(updatedLoadingTodos));
 
     const { error, errorText } = yield call(deleteTodoItemRequest, id);
 
@@ -55,6 +55,6 @@ export function* deleteTodoItemWorkerSaga(id: string) {
       isDeleting: false,
     });
 
-    yield put(setUpdatedTodoItem(updatedLoadingTodos));
+    yield put(setUpdatedTodoItemActionSaga(updatedLoadingTodos));
   }
 }
