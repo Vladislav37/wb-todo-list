@@ -1,23 +1,51 @@
-import { fetchTodoListAction, setTodoItemLoadingAction } from './actions';
-import { TodoInitialState } from './types';
+import {
+  fetchTodoListAction,
+  setUpdatedTodoItem,
+  showFormForNewTaskAction,
+  startCardInfoLoadingAction,
+  startCreatingNewTaskAction,
+  stopCardInfoLoadingAction,
+  stopCreatingNewTaskAction,
+} from './actions';
+import { TodoStorageType } from './_types';
 
-export const initialState: TodoInitialState = {
-  todos: [],
+export const initialState: TodoStorageType = {
+  data: {
+    todos: [],
+  },
+  areTasksLoading: false,
+  showFormForNewTask: false,
+  isNewTaskCreating: false,
 };
 
-const reducer = (state: TodoInitialState = initialState, { type, payload }) => {
+const reducer = (
+  state: TodoStorageType = initialState,
+  { type, payload },
+): TodoStorageType => {
   switch (type) {
     case fetchTodoListAction.type:
       return {
         ...state,
-        todos: payload.todos,
+        data: payload,
       };
-    // делает тоже самое что и fetchTodoListAction
-    case setTodoItemLoadingAction.type:
+    case setUpdatedTodoItem.type:
       return {
         ...state,
-        todos: payload,
+        data: { ...state.data, todos: payload },
       };
+    case startCardInfoLoadingAction.type:
+      return { ...state, areTasksLoading: true };
+    case stopCardInfoLoadingAction.type:
+      return { ...state, areTasksLoading: false };
+    case showFormForNewTaskAction.type:
+      return {
+        ...state,
+        showFormForNewTask: payload,
+      };
+    case startCreatingNewTaskAction.type:
+      return { ...state, isNewTaskCreating: true };
+    case stopCreatingNewTaskAction.type:
+      return { ...state, isNewTaskCreating: false };
     default:
       return state;
   }

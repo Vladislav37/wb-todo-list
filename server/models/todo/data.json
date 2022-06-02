@@ -1,26 +1,9 @@
 {
-  "0": {
-    "id": 1,
-    "name": "первая таска",
-    "description": "описание первой таски"
-  },
   "todos": [
     {
-      "id": "LwiOh",
-      "name": "ааа",
-      "description": "ааа",
-      "isLoading": false
-    },
-    {
-      "id": "uleK4",
-      "name": "ааа",
-      "description": "аааа",
-      "isLoading": false
-    },
-    {
-      "id": "vfMos",
-      "name": "аааа",
-      "description": "ааа",
+      "id": "IjGKF",
+      "name": "fgdgfd",
+      "description": "fgdddfg",
       "isLoading": false
     }
   ]

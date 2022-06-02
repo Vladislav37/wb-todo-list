@@ -1,0 +1,29 @@
+{
+  "todoPage": {
+    "title": "Todo-List",
+    "fields": {
+      "name": "Name:",
+      "namePlaceholder": "Name task ...",
+      "description": "Description:",
+      "descriptionPlaceholder": "Description task ..."
+    },
+    "buttons": {
+      "createTask": "Create Task",
+      "edit": "Edit",
+      "delete": "Delete",
+      "update": "Update",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "errors": {
+      "status": "error",
+      "update": "Error update task!",
+      "create": "Error create new task!",
+      "delete": "Error delete task!"
+    },
+    "success": {
+      "title": "This is success!",
+      "text": "You can relax :)"
+    }
+  }
+}

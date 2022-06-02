@@ -9,4 +9,13 @@ module.exports = (app) => {
       changeOrigin: true,
     }),
   );
+
+  app.use(
+    '/I18N',
+    proxy({
+      // target: 'http://i18n.suppliers-portal-ru.svc.k8s.stage-dp',
+      target: 'http://localhost:8081',
+      changeOrigin: true,
+    }),
+  );
 };

@@ -30,7 +30,7 @@ import {
 } from '@wildberries/confirm-modal-portal';
 import { App } from '@/_components/app';
 import { routes } from '@/pages/routes';
-import { appNamespace } from './_constants/i18next/app-namespace';
+import { APP_NAMESPACE } from './_constants/i18next/app-namespace';
 import {
   starti18nextLoadingAction,
   stopi18nextLoadingAction,
@@ -81,7 +81,7 @@ router.setDependencies({
 
 router.add(routes);
 
-geti18Next({ appNamespace, locale: getLocale() }).then(() =>
+geti18Next({ appNamespace: APP_NAMESPACE, locale: getLocale() }).then(() =>
   router.start(() => {
     ReactDOM.render(
       <Provider store={store}>

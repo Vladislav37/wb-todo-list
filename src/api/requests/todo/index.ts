@@ -45,11 +45,11 @@ export const updateTodoItemRequest = (item): Promise<IResponse> => {
   });
 };
 
-export const deleteTodoItemRequest = (item): Promise<IResponse> => {
+export const deleteTodoItemRequest = (id: string): Promise<IResponse> => {
   return new RestRequest().postRequest({
     endpoint: 'http://localhost:8081/todo/deleteTodoItem',
     body: {
-      ...item,
+      id,
     },
     responseSchema: Joi.object({
       id: Joi.string().required(),

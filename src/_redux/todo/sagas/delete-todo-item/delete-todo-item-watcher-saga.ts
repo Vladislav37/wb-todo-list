@@ -1,6 +1,6 @@
 import { fork, take } from 'redux-saga/effects';
 import { deleteTodoItemAction } from '../../actions';
-import { deleteTodoItemWorkerSaga } from './worker-saga';
+import { deleteTodoItemWorkerSaga } from './delete-todo-item-worker-saga';
 
 export const DELETE_TODO_ITEM_WATCHER_SAGA_NAME =
   'DELETE_TODO_ITEM_WATCHER_SAGA_NAME';

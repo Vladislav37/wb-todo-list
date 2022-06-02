@@ -1,0 +1,35 @@
+@import "@/styles/media.module.scss";
+
+.TodoCardListView {
+  align-content: flex-start;
+  background-color: rgb(243, 210, 166);
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(100% - 250px);
+  justify-content: flex-start;
+  overflow-y: auto;
+  width: 100%;
+
+  &__item {
+    padding: 5px;
+    width: 49%;
+  }
+}
+
+
+@media #{$mobile} {
+  .TodoCardListView {
+    flex-flow: column nowrap;
+
+    &__item {
+      min-width: 240px;
+    }
+  }
+}
+
+@media #{$tablet} {
+  .TodoCardListView {
+    align-items: center;
+    flex-flow: column nowrap;
+  }
+}
