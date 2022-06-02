@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import classnames from 'classnames/bind';
 import { ButtonLink } from '@wildberries/ui-kit';
 import i18next from 'i18next';
-import { SubmitClickHandlerType } from '@/pages/todo-list/_types';
+import { SubmitClickHandlerParamsType } from '@/pages/todo-list/_types';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import { TodoCard } from '../../../todo-card';
@@ -13,7 +13,7 @@ const cn = classnames.bind(styles);
 const BLOCK_NAME = 'HeaderView';
 
 type PropsType = {
-  onSubmitClick: (params: SubmitClickHandlerType) => void;
+  onSubmitClick: (params: SubmitClickHandlerParamsType) => void;
   showFormForNewTask: boolean;
   onToggleFormOpened: () => void;
   isNewTaskCreating: boolean;

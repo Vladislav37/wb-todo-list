@@ -1,7 +1,10 @@
 import React, { memo } from 'react';
 import classnames from 'classnames/bind';
 import { Preloader } from '@wildberries/ui-kit';
-import { SubmitClickHandlerType, TodoType } from '@/pages/todo-list/_types';
+import {
+  SubmitClickHandlerParamsType,
+  TodoType,
+} from '@/pages/todo-list/_types';
 import { TodoCard } from '../../../todo-card';
 import styles from './index.module.scss';
 
@@ -12,7 +15,7 @@ const BLOCK_NAME = 'TodoCardListView';
 type PropsType = {
   todoList: TodoType[];
   onDeleteClick: (params: string) => void;
-  onSubmitClick: (params: SubmitClickHandlerType) => void;
+  onSubmitClick: (params: SubmitClickHandlerParamsType) => void;
   isLoading: boolean;
 };
 

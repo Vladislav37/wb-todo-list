@@ -23,4 +23,5 @@ export const fetchTodoConfig: InitLoadManagerRequestOptionsType = {
   textMessageSuccess: i18next.t(
     `${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.success.text`,
   ),
+  // надо еще title message error
 };

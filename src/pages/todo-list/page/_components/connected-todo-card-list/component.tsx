@@ -8,10 +8,15 @@ import {
   TodoStoragePartType,
   updateTodoItemAction,
 } from '@/_redux/todo';
-import { SubmitClickHandlerType, TodoType } from '@/pages/todo-list/_types';
+import {
+  SubmitClickHandlerParamsType,
+  TodoType,
+} from '@/pages/todo-list/_types';
 import { updateIsEditableStateForTodoList } from '@/_utils/todo';
 import { TodoCardListView } from './_components/todo-card-list-view';
 
+// ибо [] не такой заметный как Array
+// TodoType[] => Array<TodoType[]>
 type PropsType = {
   todoList: TodoType[];
   handleDeleteTask: (params: string) => void;
@@ -24,21 +29,24 @@ class WrappedContainer extends Component<PropsType> {
   submitClickHandler = ({
     values,
     isEditable,
-  }: SubmitClickHandlerType): void => {
+  }: SubmitClickHandlerParamsType): void => {
     if (isEditable) {
       this.props.handleUpdateTask(values);
-    } else {
-      const updatedEditableTodos = updateIsEditableStateForTodoList({
-        items: this.props.todoList,
-        currentId: values.id,
-        isEditable: true,
-      });
 
-      this.props.handleSetUpdatedTodos(updatedEditableTodos);
+      return;
     }
+
+    const updatedEditableTodos = updateIsEditableStateForTodoList({
+      items: this.props.todoList,
+      currentId: values.id,
+      isEditable: true,
+    });
+
+    this.props.handleSetUpdatedTodos(updatedEditableTodos);
   };
 
   deleteClickHandler = (id: string): void => {
+    // isEditable => isCardEditable
     const isEditable = this.props.todoList.find(
       (todo: TodoType) => todo.id === id,
     )?.isEditable;
@@ -76,9 +84,12 @@ const mapStateToProps = (state: TodoStoragePartType) => {
 };
 
 const mapDispatchToProps = {
+  // handleDeleteTask => deleteTask
   handleDeleteTask: deleteTodoItemAction,
+  // handleUpdateTask => updateTask
   handleUpdateTask: updateTodoItemAction,
-  handleSetUpdatedTodos: setUpdatedTodoItem,
+  // handleSetUpdatedTodos => setUpdatedTodos
+  handleSetUpdatedTodos: setUpdatedTodoItem, // action postfix
 };
 
 export const ConnectedTodoCardList = connect(

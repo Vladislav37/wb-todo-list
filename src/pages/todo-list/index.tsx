@@ -22,13 +22,8 @@ const action = async ({ fromState, toState }) => {
       >
         <AppLayout>
           <RouteNode nodeName={pageNode}>
-            {({ route, content }) => {
-              if (route.name === pageNode) {
-                return <Page />;
-              }
-
-              return content;
-            }}
+            {/* когда нет чилдов - можно так */}
+            {() => <Page />}
           </RouteNode>
         </AppLayout>
       </ReduxStoreLoader>

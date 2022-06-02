@@ -7,7 +7,10 @@ import {
   FormTextAreaInput,
 } from '@wildberries/ui-kit';
 import i18next from 'i18next';
-import { SubmitClickHandlerType, TodoType } from '@/pages/todo-list/_types';
+import {
+  SubmitClickHandlerParamsType,
+  TodoType,
+} from '@/pages/todo-list/_types';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import { CONTACTS_VALIDATIONS } from './_constants';
@@ -22,7 +25,7 @@ type PropsType = {
   isEditable: boolean;
   isDeleting: boolean;
   deleteClick?: (params: string) => void;
-  submitClick?: (params: SubmitClickHandlerType) => void;
+  submitClick?: (params: SubmitClickHandlerParamsType) => void;
 };
 
 const cn = classnames.bind(styles);
@@ -43,11 +46,13 @@ export const TodoCard = memo(
     const disabledField = useMemo(() => !isEditable && id, [id, isEditable]);
 
     const textDeleteButton = useMemo(() => {
+      // to util
       return !disabledField
         ? i18next.t(`${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.buttons.cancel`)
         : i18next.t(`${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.buttons.delete`);
     }, [disabledField]);
 
+    // created on every render
     const subscriptionObj = { submitting: true };
 
     const textSubmitButton = useMemo(
@@ -92,6 +97,7 @@ export const TodoCard = memo(
                   validate={CONTACTS_VALIDATIONS.name}
                 />
               </div>
+              {/* 1 react component = 1 bem-block */}
               <div className={cn('field')}>
                 <Field
                   component={FormTextAreaInput}
@@ -108,6 +114,7 @@ export const TodoCard = memo(
                 />
               </div>
               <div className={cn(`${BLOCK_NAME}__buttons`)}>
+                {/* 1 react component = 1 bem-block */}
                 <div className={cn('button')}>
                   <ButtonLink
                     isLoading={isLoading}

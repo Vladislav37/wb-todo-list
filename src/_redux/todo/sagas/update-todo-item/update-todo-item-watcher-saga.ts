@@ -7,6 +7,7 @@ export const UPDATE_TODO_ITEM_WATCHER_SAGA_NAME =
 
 export function* updateTodoItemWatcherSaga() {
   while (true) {
+    // экшны идущие в саги имеют обязательно постфикс ActionSaga
     const { payload }: ReturnType<typeof updateTodoItemAction> = yield take(
       updateTodoItemAction.type,
     );

@@ -7,7 +7,10 @@ import {
   showFormForNewTaskSelector,
   TodoStoragePartType,
 } from '@/_redux/todo';
-import { SubmitClickHandlerType, TodoType } from '@/pages/todo-list/_types';
+import {
+  SubmitClickHandlerParamsType,
+  TodoType,
+} from '@/pages/todo-list/_types';
 import { HeaderView } from './_components/header-view';
 
 type PropsType = {
@@ -18,7 +21,7 @@ type PropsType = {
 };
 
 class WrappedContainer extends Component<PropsType> {
-  submitClickHandler = ({ values }: SubmitClickHandlerType): void => {
+  submitClickHandler = ({ values }: SubmitClickHandlerParamsType): void => {
     this.props.handleCreateTask(values);
   };
 
