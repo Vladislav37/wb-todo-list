@@ -19,3 +19,9 @@ export const getTextSubmitButton = ({
 
   return i18next.t(`${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.buttons.save`);
 };
+
+export const getTextDeleteButton = (disabledField: boolean): string => {
+  return disabledField
+    ? i18next.t(`${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.buttons.delete`)
+    : i18next.t(`${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.buttons.cancel`);
+};

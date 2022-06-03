@@ -11,9 +11,3 @@ export type SubmitClickHandlerParamsType = {
   values: TodoType;
   isEditable?: boolean;
 };
-
-// not used
-export type DeleteClickHandlerType = {
-  id: string;
-  isEditable: boolean;
-};

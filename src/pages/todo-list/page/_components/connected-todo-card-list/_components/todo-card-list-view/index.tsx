@@ -13,7 +13,7 @@ const cn = classnames.bind(styles);
 const BLOCK_NAME = 'TodoCardListView';
 
 type PropsType = {
-  todoList: TodoType[];
+  todoList: Array<TodoType>;
   onDeleteClick: (params: string) => void;
   onSubmitClick: (params: SubmitClickHandlerParamsType) => void;
   isLoading: boolean;

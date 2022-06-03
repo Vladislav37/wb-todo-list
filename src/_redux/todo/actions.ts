@@ -13,44 +13,44 @@ export const fetchTodoListAction: IReduxAction<
 fetchTodoListAction.type = FETCH_TODOLIST;
 
 export const SET_UPDATED_TODO_ITEM = 'SET_UPDATED_TODO_ITEM';
-export const setUpdatedTodoItem: IReduxAction<
-  TodoType[],
+export const setUpdatedTodoItemAction: IReduxAction<
+  Array<TodoType>,
   typeof SET_UPDATED_TODO_ITEM
 > = (payload) => ({
   type: SET_UPDATED_TODO_ITEM,
   payload,
 });
-setUpdatedTodoItem.type = SET_UPDATED_TODO_ITEM;
+setUpdatedTodoItemAction.type = SET_UPDATED_TODO_ITEM;
 
 export const CREATE_TODO_ITEM = 'CREATE_TODO_ITEM';
-export const createTodoItemAction: IReduxAction<
+export const createTodoItemActionSaga: IReduxAction<
   TodoType,
   typeof CREATE_TODO_ITEM
 > = (payload) => ({
   type: CREATE_TODO_ITEM,
   payload,
 });
-createTodoItemAction.type = CREATE_TODO_ITEM;
+createTodoItemActionSaga.type = CREATE_TODO_ITEM;
 
 export const UPDATE_TODO_ITEM = 'UPDATE_TODO_ITEM';
-export const updateTodoItemAction: IReduxAction<
+export const updateTodoItemActionSaga: IReduxAction<
   TodoType,
   typeof UPDATE_TODO_ITEM
 > = (payload) => ({
   type: UPDATE_TODO_ITEM,
   payload,
 });
-updateTodoItemAction.type = UPDATE_TODO_ITEM;
+updateTodoItemActionSaga.type = UPDATE_TODO_ITEM;
 
 export const DELETE_TODO_ITEM = 'DELETE_TODO_ITEM';
-export const deleteTodoItemAction: IReduxAction<
+export const deleteTodoItemActionSaga: IReduxAction<
   string,
   typeof DELETE_TODO_ITEM
 > = (payload) => ({
   type: DELETE_TODO_ITEM,
   payload,
 });
-deleteTodoItemAction.type = DELETE_TODO_ITEM;
+deleteTodoItemActionSaga.type = DELETE_TODO_ITEM;
 
 export const START_LOADING = 'START_LOADING';
 export const startCardInfoLoadingAction: IReduxBaseAction<

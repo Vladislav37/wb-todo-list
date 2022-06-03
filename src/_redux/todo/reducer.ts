@@ -1,6 +1,6 @@
 import {
   fetchTodoListAction,
-  setUpdatedTodoItem,
+  setUpdatedTodoItemAction,
   showFormForNewTaskAction,
   startCardInfoLoadingAction,
   startCreatingNewTaskAction,
@@ -28,7 +28,7 @@ const reducer = (
         ...state,
         data: payload,
       };
-    case setUpdatedTodoItem.type:
+    case setUpdatedTodoItemAction.type:
       return {
         ...state,
         data: { ...state.data, todos: payload },

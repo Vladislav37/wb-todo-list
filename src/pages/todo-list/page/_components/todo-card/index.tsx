@@ -14,8 +14,8 @@ import {
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import { CONTACTS_VALIDATIONS } from './_constants';
+import { getTextDeleteButton, getTextSubmitButton } from './_utils';
 import styles from './index.module.scss';
-import { getTextSubmitButton } from './_utils';
 
 type PropsType = {
   id: string;
@@ -32,6 +32,8 @@ const cn = classnames.bind(styles);
 
 const BLOCK_NAME = 'Todo-card';
 
+const SUBSCRIBTION = { submitting: true };
+
 export const TodoCard = memo(
   ({
     id,
@@ -43,19 +45,17 @@ export const TodoCard = memo(
     deleteClick,
     submitClick,
   }: PropsType) => {
-    const disabledField = useMemo(() => !isEditable && id, [id, isEditable]);
+    const disabledField: boolean = useMemo(
+      () => !isEditable && Boolean(id),
+      [id, isEditable],
+    );
 
-    const textDeleteButton = useMemo(() => {
-      // to util
-      return !disabledField
-        ? i18next.t(`${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.buttons.cancel`)
-        : i18next.t(`${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.buttons.delete`);
-    }, [disabledField]);
+    const textDeleteButton: string = useMemo(
+      () => getTextDeleteButton(disabledField),
+      [disabledField],
+    );
 
-    // created on every render
-    const subscriptionObj = { submitting: true };
-
-    const textSubmitButton = useMemo(
+    const textSubmitButton: string = useMemo(
       () => getTextSubmitButton({ id, editableTask: isEditable }),
       [id, isEditable],
     );
@@ -82,7 +82,7 @@ export const TodoCard = memo(
           onSubmit={submitClickHandler}
           render={({ handleSubmit }) => (
             <form className={cn(`${BLOCK_NAME}__form`)} onSubmit={handleSubmit}>
-              <div className={cn('field')}>
+              <div className={cn(`${BLOCK_NAME}__field`)}>
                 <Field
                   component={FormSimpleInput}
                   disabled={disabledField}
@@ -97,8 +97,7 @@ export const TodoCard = memo(
                   validate={CONTACTS_VALIDATIONS.name}
                 />
               </div>
-              {/* 1 react component = 1 bem-block */}
-              <div className={cn('field')}>
+              <div className={cn(`${BLOCK_NAME}__field`)}>
                 <Field
                   component={FormTextAreaInput}
                   disabled={disabledField}
@@ -114,8 +113,7 @@ export const TodoCard = memo(
                 />
               </div>
               <div className={cn(`${BLOCK_NAME}__buttons`)}>
-                {/* 1 react component = 1 bem-block */}
-                <div className={cn('button')}>
+                <div className={cn(`${BLOCK_NAME}__button`)}>
                   <ButtonLink
                     isLoading={isLoading}
                     size="small"
@@ -124,7 +122,7 @@ export const TodoCard = memo(
                     variant="add"
                   />
                 </div>
-                <div className={cn('button')}>
+                <div className={cn(`${BLOCK_NAME}__button`)}>
                   <ButtonLink
                     isLoading={isDeleting}
                     onClick={deleteClickHandler}
@@ -137,7 +135,7 @@ export const TodoCard = memo(
               </div>
             </form>
           )}
-          subscription={subscriptionObj}
+          subscription={SUBSCRIBTION}
         />
       </div>
     );

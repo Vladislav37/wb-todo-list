@@ -3,7 +3,7 @@ import { REDUCER_TODOLIST_NAME } from './_constants';
 
 export type TodoStorageType = {
   data: {
-    todos: TodoType[];
+    todos: Array<TodoType>;
   };
   areTasksLoading: boolean;
   showFormForNewTask: boolean;

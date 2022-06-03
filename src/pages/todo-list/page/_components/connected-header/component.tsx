@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  createTodoItemAction,
+  createTodoItemActionSaga,
   isNewTaskCreatingSelector,
   showFormForNewTaskAction,
   showFormForNewTaskSelector,
@@ -49,7 +49,7 @@ const mapStateToProps = (state: TodoStoragePartType) => {
 };
 
 const mapDispatchToProps = {
-  handleCreateTask: createTodoItemAction,
+  handleCreateTask: createTodoItemActionSaga,
   handleShowFormForNewTask: showFormForNewTaskAction,
 };
 
