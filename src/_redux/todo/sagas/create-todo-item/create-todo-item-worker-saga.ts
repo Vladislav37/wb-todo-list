@@ -10,13 +10,13 @@ import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import {
   showFormForNewTaskActionSaga,
-  startCreatingNewTaskActionSaga,
-  stopCreatingNewTaskActionSaga,
+  startCreatingNewTaskAction,
+  stopCreatingNewTaskAction,
 } from '../../actions';
 
 export function* createTodoItemWorkerSaga(item: TodoType) {
   try {
-    yield put(startCreatingNewTaskActionSaga());
+    yield put(startCreatingNewTaskAction());
 
     const { error, errorText }: IResponse = yield call(
       createTodoItemRequest,
@@ -50,6 +50,6 @@ export function* createTodoItemWorkerSaga(item: TodoType) {
       }),
     );
   } finally {
-    yield put(stopCreatingNewTaskActionSaga());
+    yield put(stopCreatingNewTaskAction());
   }
 }

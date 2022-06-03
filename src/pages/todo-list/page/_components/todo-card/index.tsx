@@ -13,9 +13,10 @@ import {
 } from '@/pages/todo-list/_types';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
+import { subscriptionObj } from '@/pages/todo-list/_constants';
 import { CONTACTS_VALIDATIONS } from './_constants';
-import styles from './index.module.scss';
 import { getTextDeleteButton, getTextSubmitButton } from './_utils';
+import styles from './index.module.scss';
 
 type PropsType = {
   id: string;
@@ -44,7 +45,7 @@ export const TodoCard = memo(
     submitClick,
   }: PropsType) => {
     const disabledField: boolean = useMemo(
-      () => !isEditable && !!id,
+      () => !isEditable && Boolean(id),
       [id, isEditable],
     );
 
@@ -52,8 +53,6 @@ export const TodoCard = memo(
       () => getTextDeleteButton(disabledField),
       [disabledField],
     );
-
-    const subscriptionObj = useMemo(() => ({ submitting: true }), []);
 
     const textSubmitButton: string = useMemo(
       () => getTextSubmitButton({ id, editableTask: isEditable }),

@@ -13,14 +13,14 @@ export const fetchTodoListAction: IReduxAction<
 fetchTodoListAction.type = FETCH_TODOLIST;
 
 export const SET_UPDATED_TODO_ITEM = 'SET_UPDATED_TODO_ITEM';
-export const setUpdatedTodoItemActionSaga: IReduxAction<
+export const setUpdatedTodoItemAction: IReduxAction<
   Array<TodoType>,
   typeof SET_UPDATED_TODO_ITEM
 > = (payload) => ({
   type: SET_UPDATED_TODO_ITEM,
   payload,
 });
-setUpdatedTodoItemActionSaga.type = SET_UPDATED_TODO_ITEM;
+setUpdatedTodoItemAction.type = SET_UPDATED_TODO_ITEM;
 
 export const CREATE_TODO_ITEM = 'CREATE_TODO_ITEM';
 export const createTodoItemActionSaga: IReduxAction<
@@ -68,20 +68,19 @@ export const stopCardInfoLoadingAction: IReduxBaseAction<typeof STOP_LOADING> =
 stopCardInfoLoadingAction.type = STOP_LOADING;
 
 export const START_CREATING = 'START_CREATING';
-export const startCreatingNewTaskActionSaga: IReduxBaseAction<
+export const startCreatingNewTaskAction: IReduxBaseAction<
   typeof START_CREATING
 > = () => ({
   type: START_CREATING,
 });
-startCreatingNewTaskActionSaga.type = START_CREATING;
+startCreatingNewTaskAction.type = START_CREATING;
 
 export const STOP_CREATING = 'STOP_CREATING';
-export const stopCreatingNewTaskActionSaga: IReduxBaseAction<
-  typeof STOP_CREATING
-> = () => ({
-  type: STOP_CREATING,
-});
-stopCreatingNewTaskActionSaga.type = STOP_CREATING;
+export const stopCreatingNewTaskAction: IReduxBaseAction<typeof STOP_CREATING> =
+  () => ({
+    type: STOP_CREATING,
+  });
+stopCreatingNewTaskAction.type = STOP_CREATING;
 
 export const SHOW_FORM_FOR_NEW_TASK = 'SHOW_FORM_FOR_NEW_TASK';
 export const showFormForNewTaskActionSaga: IReduxAction<
