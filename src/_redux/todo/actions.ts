@@ -83,11 +83,11 @@ export const stopCreatingNewTaskAction: IReduxBaseAction<typeof STOP_CREATING> =
 stopCreatingNewTaskAction.type = STOP_CREATING;
 
 export const SHOW_FORM_FOR_NEW_TASK = 'SHOW_FORM_FOR_NEW_TASK';
-export const showFormForNewTaskActionSaga: IReduxAction<
+export const showFormForNewTaskAction: IReduxAction<
   boolean,
   typeof SHOW_FORM_FOR_NEW_TASK
 > = (payload) => ({
   type: SHOW_FORM_FOR_NEW_TASK,
   payload,
 });
-showFormForNewTaskActionSaga.type = SHOW_FORM_FOR_NEW_TASK;
+showFormForNewTaskAction.type = SHOW_FORM_FOR_NEW_TASK;

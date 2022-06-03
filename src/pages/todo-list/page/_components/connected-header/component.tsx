@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   createTodoItemActionSaga,
   isNewTaskCreatingSelector,
-  showFormForNewTaskActionSaga,
+  showFormForNewTaskAction,
   showFormForNewTaskSelector,
   TodoStoragePartType,
 } from '@/_redux/todo';
@@ -50,7 +50,7 @@ const mapStateToProps = (state: TodoStoragePartType) => {
 
 const mapDispatchToProps = {
   handleCreateTask: createTodoItemActionSaga,
-  handleShowFormForNewTask: showFormForNewTaskActionSaga,
+  handleShowFormForNewTask: showFormForNewTaskAction,
 };
 
 export const ConnectedHeader = connect(

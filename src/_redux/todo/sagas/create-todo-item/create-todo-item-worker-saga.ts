@@ -9,7 +9,7 @@ import { TodoType } from '@/pages/todo-list/_types';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import {
-  showFormForNewTaskActionSaga,
+  showFormForNewTaskAction,
   startCreatingNewTaskAction,
   stopCreatingNewTaskAction,
 } from '../../actions';
@@ -27,7 +27,7 @@ export function* createTodoItemWorkerSaga(item: TodoType) {
       throw new Error(errorText);
     }
 
-    yield put(showFormForNewTaskActionSaga(false));
+    yield put(showFormForNewTaskAction(false));
 
     yield put(
       initLoadManagerActionSaga({

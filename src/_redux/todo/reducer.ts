@@ -1,7 +1,7 @@
 import {
   fetchTodoListAction,
   setUpdatedTodoItemAction,
-  showFormForNewTaskActionSaga,
+  showFormForNewTaskAction,
   startCardInfoLoadingAction,
   startCreatingNewTaskAction,
   stopCardInfoLoadingAction,
@@ -37,7 +37,7 @@ const reducer = (
       return { ...state, areTasksLoading: true };
     case stopCardInfoLoadingAction.type:
       return { ...state, areTasksLoading: false };
-    case showFormForNewTaskActionSaga.type:
+    case showFormForNewTaskAction.type:
       return {
         ...state,
         showFormForNewTask: payload,
