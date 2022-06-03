@@ -13,7 +13,6 @@ import {
 } from '@/pages/todo-list/_types';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
-import { subscriptionObj } from '@/pages/todo-list/_constants';
 import { CONTACTS_VALIDATIONS } from './_constants';
 import { getTextDeleteButton, getTextSubmitButton } from './_utils';
 import styles from './index.module.scss';
@@ -32,6 +31,8 @@ type PropsType = {
 const cn = classnames.bind(styles);
 
 const BLOCK_NAME = 'Todo-card';
+
+const SUBSCRIBTION = { submitting: true };
 
 export const TodoCard = memo(
   ({
@@ -134,7 +135,7 @@ export const TodoCard = memo(
               </div>
             </form>
           )}
-          subscription={subscriptionObj}
+          subscription={SUBSCRIBTION}
         />
       </div>
     );
