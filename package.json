@@ -10,7 +10,7 @@
     "@mihanizm56/react-final-form-utils": "0.0.8-beta.1",
     "@mihanizm56/redux-core-modules": "1.5.8",
     "@mihanizm56/webpack-magic-redux-modules": "0.0.6",
-    "@mihanizm56/webpack-stream-watcher": "0.1.4",
+    "@mihanizm56/webpack-stream-watcher": "0.1.6",
     "@ravilm/databus": "1.0.2",
     "@ravilm/databus-react": "1.0.2",
     "@wildberries/confirm-modal-portal": "0.1.3",

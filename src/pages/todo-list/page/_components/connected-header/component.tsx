@@ -49,6 +49,7 @@ const mapStateToProps = (state: TodoStoragePartType) => {
 };
 
 const mapDispatchToProps = {
+  // use form manager from redux-core-modules
   handleCreateTask: createTodoItemActionSaga,
   handleShowFormForNewTask: showFormForNewTaskAction,
 };

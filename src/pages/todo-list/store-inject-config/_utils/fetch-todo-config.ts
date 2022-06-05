@@ -12,7 +12,7 @@ import { PAGE_SUB_NAMESPACE } from '../../_constants/translations/page-sub-names
 export const fetchTodoConfig: InitLoadManagerRequestOptionsType = {
   request: getTodoListRequest,
   actionSuccess: fetchTodoListAction,
-  errorAction: fetchTodoListAction,
+  errorAction: fetchTodoListAction, //  not correct - fetchTodoListAction has purpose to set data!!!
   loadingStartAction: startCardInfoLoadingAction,
   loadingStopAction: stopCardInfoLoadingAction,
   showErrorNotification: true,

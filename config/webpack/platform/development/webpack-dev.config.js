@@ -4,6 +4,7 @@ const ActionsLoaderConfig = require('@mihanizm56/webpack-magic-redux-modules/lib
 const PlatformBuildWithWatchPlugin = require('@mihanizm56/webpack-stream-watcher');
 
 const config = {
+  devtool: 'source-map',
   plugins: [new PlatformBuildWithWatchPlugin()],
   module: {
     rules: [ActionsLoaderConfig()],

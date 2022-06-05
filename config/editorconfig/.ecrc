@@ -12,6 +12,7 @@
     "\\.md",
     "\\.cmd",
     "\\.env",
+    "\\.todo",
     "config/",
     "k8s/",
     "include.sh",
