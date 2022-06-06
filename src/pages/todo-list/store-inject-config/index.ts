@@ -1,7 +1,5 @@
 import { StoreInjectConfig } from '@mihanizm56/redux-core-modules';
 import todoReducer, {
-  createTodoItemWatcherSaga,
-  CREATE_TODO_ITEM_WATCHER_SAGA_NAME,
   deleteTodoItemWatcherSaga,
   DELETE_TODO_ITEM_WATCHER_SAGA_NAME,
   REDUCER_TODOLIST_NAME,
@@ -23,15 +21,11 @@ export const storeInjectConfig: StoreInjectConfig = {
       saga: updateTodoItemWatcherSaga,
     },
     {
-      name: CREATE_TODO_ITEM_WATCHER_SAGA_NAME,
-      saga: createTodoItemWatcherSaga,
-    },
-    {
       name: DELETE_TODO_ITEM_WATCHER_SAGA_NAME,
       saga: deleteTodoItemWatcherSaga,
     },
   ],
   initialLoadManagerConfig: {
-    requestConfigList: [fetchTodoConfig],
+    requestConfigList: [fetchTodoConfig()],
   },
 };

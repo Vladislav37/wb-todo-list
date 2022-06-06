@@ -1,5 +1,11 @@
 1) ресет формы должен быть только при успешном сабмите `с полседующим ее закрытием
 2) поправить комментарии
++ 3) экш для начального состояние
+4) эндоинты и рекветы разбить на файлы
++ 5) update без прелоадера
+
+
+
 3) встроить в каркас
 https://git.wildberries.ru/suppliers-portal-eu/suppliers-portal-eu-root/-/blob/master/docs/local-root-usage.md
 4) upd routes pkg

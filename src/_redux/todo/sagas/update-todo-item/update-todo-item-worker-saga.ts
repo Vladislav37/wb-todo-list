@@ -6,6 +6,7 @@ import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fe
 import { updateTodoItemRequest } from '@/api/requests/todo';
 import { TodoType } from '@/pages/todo-list/_types';
 import {
+  callSuccesNotification,
   updateIsEditableStateForTodoList,
   updateIsLoadingStateForTodoList,
 } from '@/_utils/todo';
@@ -40,9 +41,11 @@ export function* updateTodoItemWorkerSaga(item: TodoType) {
 
     yield put(setUpdatedTodoItemAction(updatedEditableTodos));
 
+    yield put(callSuccesNotification());
+
     yield put(
       initLoadManagerActionSaga({
-        requestConfigList: [fetchTodoConfig],
+        requestConfigList: [fetchTodoConfig(true)],
       }),
     );
   } catch (error) {

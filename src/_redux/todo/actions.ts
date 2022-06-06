@@ -2,15 +2,23 @@ import { IReduxAction, IReduxBaseAction } from '@mihanizm56/redux-core-modules';
 import { TodoType } from '@/pages/todo-list/_types';
 import { TodoStorageType } from './_types';
 
-export const FETCH_TODOLIST = 'FETCH_TODOLIST';
-export const fetchTodoListAction: IReduxAction<
+export const SET_TODOLIST = 'SET_TODOLIST';
+export const setTodoListAction: IReduxAction<
   TodoStorageType[],
-  typeof FETCH_TODOLIST
+  typeof SET_TODOLIST
 > = (payload) => ({
-  type: FETCH_TODOLIST,
+  type: SET_TODOLIST,
   payload,
 });
-fetchTodoListAction.type = FETCH_TODOLIST;
+setTodoListAction.type = SET_TODOLIST;
+
+export const SET_INITIAL_TODOLIST = 'SET_INITIAL_TODOLIST';
+export const setInitialTodoListAction: IReduxBaseAction<
+  typeof SET_INITIAL_TODOLIST
+> = () => ({
+  type: SET_INITIAL_TODOLIST,
+});
+setInitialTodoListAction.type = SET_INITIAL_TODOLIST;
 
 export const SET_UPDATED_TODO_ITEM = 'SET_UPDATED_TODO_ITEM';
 export const setUpdatedTodoItemAction: IReduxAction<

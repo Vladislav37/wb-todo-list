@@ -1,4 +1,7 @@
 {
+  "backend-errors": {
+    "network-error": "Ошибка соединения"
+  },
   "todoPage": {
     "title": "Todo-List",
     "fields": {
@@ -24,7 +27,7 @@
     },
     "success": {
       "title": "Это успех!",
-      "text": "Может выдохнуть и покурить :)"
+      "text": "Можешь выдохнуть и покурить :)"
     }
   }
 }

@@ -1,5 +1,6 @@
 import {
-  fetchTodoListAction,
+  setInitialTodoListAction,
+  setTodoListAction,
   setUpdatedTodoItemAction,
   showFormForNewTaskAction,
   startCardInfoLoadingAction,
@@ -10,10 +11,7 @@ import {
 import { TodoStorageType } from './_types';
 
 export const initialState: TodoStorageType = {
-  data: {
-    // убрать вложенность
-    todos: [],
-  },
+  data: [],
   areTasksLoading: false,
   showFormForNewTask: false,
   isNewTaskCreating: false,
@@ -24,8 +22,7 @@ const reducer = (
   { type, payload },
 ): TodoStorageType => {
   switch (type) {
-    // rename fetchTodoListAction => there is no fetch in reducer's action
-    case fetchTodoListAction.type:
+    case setTodoListAction.type:
       return {
         ...state,
         data: payload,
@@ -34,7 +31,7 @@ const reducer = (
     case setUpdatedTodoItemAction.type:
       return {
         ...state,
-        data: { ...state.data, todos: payload },
+        data: [...payload],
       };
 
     case startCardInfoLoadingAction.type:
@@ -52,6 +49,12 @@ const reducer = (
       return { ...state, isNewTaskCreating: true };
     case stopCreatingNewTaskAction.type:
       return { ...state, isNewTaskCreating: false };
+
+    case setInitialTodoListAction.type:
+      return {
+        ...state,
+        data: [],
+      };
 
     default:
       return state;
