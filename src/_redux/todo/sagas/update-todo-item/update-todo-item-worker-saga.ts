@@ -3,7 +3,6 @@ import { setModalAction } from '@wildberries/notifications';
 import { call, put, select } from 'redux-saga/effects';
 import i18next from 'i18next';
 import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fetch-todo-config';
-import { updateTodoItemRequest } from '@/api/requests/todo';
 import { TodoType } from '@/pages/todo-list/_types';
 import {
   callSuccesNotification,
@@ -12,6 +11,7 @@ import {
 } from '@/_utils/todo';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
+import { updateTodoItemRequest } from '@/api/requests/todo/update-todo-item';
 import { todoListSelector } from '../../selectors';
 import { setUpdatedTodoItemAction } from '../../actions';
 

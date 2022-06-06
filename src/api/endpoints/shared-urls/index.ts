@@ -9,3 +9,5 @@ export const getPortalEuEndpoint = (): string =>
     : ENDPOINT_EU_PORTAL_PROD;
 
 export const translationsEndpoint = `${getPortalEuEndpoint()}/I18N`;
+
+export const LOCALHOST_ENDPOINT = 'http://localhost:8081';

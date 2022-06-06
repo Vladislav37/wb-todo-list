@@ -20,10 +20,10 @@ import {
   SubmitClickHandlerParamsType,
   TodoType,
 } from '@/pages/todo-list/_types';
-import { createTodoItemRequest } from '@/api/requests/todo';
 import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fetch-todo-config';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
+import { createTodoItemRequest } from '@/api/requests/todo/create-todo-item';
 import { HeaderView } from './_components/header-view';
 
 type PropsType = {
@@ -38,7 +38,7 @@ class WrappedContainer extends Component<PropsType> {
   submitClickHandler = ({ values }: SubmitClickHandlerParamsType): void => {
     this.props.handleCreateTask({
       resetInitialDataAction: () => setNewTaskFormInitialValuesAction(values),
-      formRequest: createTodoItemRequest,
+      formRequest: ({ body }) => createTodoItemRequest(body),
       formValues: values,
       showNotification: true,
       loadingStartAction: startCreatingNewTaskAction,
