@@ -99,3 +99,23 @@ export const showFormForNewTaskAction: IReduxAction<
   payload,
 });
 showFormForNewTaskAction.type = SHOW_FORM_FOR_NEW_TASK;
+
+export const RESET_NEW_TASK_FORM_INITIAL_VALUES =
+  'RESET_NEW_TASK_FORM_INITIAL_VALUES';
+export const resetNewTaskFormInitialValuesAction: IReduxBaseAction<
+  typeof RESET_NEW_TASK_FORM_INITIAL_VALUES
+> = () => ({
+  type: RESET_NEW_TASK_FORM_INITIAL_VALUES,
+});
+resetNewTaskFormInitialValuesAction.type = RESET_NEW_TASK_FORM_INITIAL_VALUES;
+
+export const SET_NEW_TASK_FORM_INITIAL_VALUES =
+  'SET_NEW_TASK_FORM_INITIAL_VALUES';
+export const setNewTaskFormInitialValuesAction: IReduxAction<
+  TodoType,
+  typeof SET_NEW_TASK_FORM_INITIAL_VALUES
+> = (payload) => ({
+  type: SET_NEW_TASK_FORM_INITIAL_VALUES,
+  payload,
+});
+setNewTaskFormInitialValuesAction.type = SET_NEW_TASK_FORM_INITIAL_VALUES;

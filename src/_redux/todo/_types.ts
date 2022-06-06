@@ -6,6 +6,7 @@ export type TodoStorageType = {
   areTasksLoading: boolean;
   showFormForNewTask: boolean;
   isNewTaskCreating: boolean;
+  newTaskFormValues: TodoType;
 };
 
 export type TodoStoragePartType = {

@@ -7,13 +7,19 @@ import {
 import i18next from 'i18next';
 import {
   isNewTaskCreatingSelector,
+  newTaskFormValuesSelector,
+  resetNewTaskFormInitialValuesAction,
+  setNewTaskFormInitialValuesAction,
   showFormForNewTaskAction,
   showFormForNewTaskSelector,
   startCreatingNewTaskAction,
   stopCreatingNewTaskAction,
   TodoStoragePartType,
 } from '@/_redux/todo';
-import { SubmitClickHandlerParamsType } from '@/pages/todo-list/_types';
+import {
+  SubmitClickHandlerParamsType,
+  TodoType,
+} from '@/pages/todo-list/_types';
 import { createTodoItemRequest } from '@/api/requests/todo';
 import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fetch-todo-config';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
@@ -25,11 +31,13 @@ type PropsType = {
   handleShowFormForNewTask: (params: boolean) => void;
   showFormForNewTask: boolean;
   isNewTaskCreating: boolean;
+  newTaskFormValues: TodoType;
 };
 
 class WrappedContainer extends Component<PropsType> {
   submitClickHandler = ({ values }: SubmitClickHandlerParamsType): void => {
     this.props.handleCreateTask({
+      resetInitialDataAction: () => setNewTaskFormInitialValuesAction(values),
       formRequest: createTodoItemRequest,
       formValues: values,
       showNotification: true,
@@ -41,6 +49,7 @@ class WrappedContainer extends Component<PropsType> {
           initLoadManagerActionSaga({
             requestConfigList: [fetchTodoConfig(true)],
           }),
+        resetNewTaskFormInitialValuesAction,
       ],
       titleMessageSuccess: i18next.t(
         `${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.success.title`,
@@ -62,6 +71,7 @@ class WrappedContainer extends Component<PropsType> {
     return (
       <HeaderView
         isNewTaskCreating={this.props.isNewTaskCreating}
+        newTaskFormValues={this.props.newTaskFormValues}
         onSubmitClick={this.submitClickHandler}
         onToggleFormOpened={this.handleToggleFormOpened}
         showFormForNewTask={this.props.showFormForNewTask}
@@ -74,12 +84,11 @@ const mapStateToProps = (state: TodoStoragePartType) => {
   return {
     showFormForNewTask: showFormForNewTaskSelector(state),
     isNewTaskCreating: isNewTaskCreatingSelector(state),
+    newTaskFormValues: newTaskFormValuesSelector(state),
   };
 };
 
 const mapDispatchToProps = {
-  // use form manager from redux-core-modules
-  // handleCreateTask: createTodoItemActionSaga,
   handleCreateTask: fetchFormManagerSagaAction,
   handleShowFormForNewTask: showFormForNewTaskAction,
 };

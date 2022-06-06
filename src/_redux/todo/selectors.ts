@@ -26,3 +26,8 @@ export const isNewTaskCreatingSelector = createSelector(
   [todoListStorageSelector],
   ({ isNewTaskCreating }: TodoStorageType) => isNewTaskCreating,
 );
+
+export const newTaskFormValuesSelector = createSelector(
+  [todoListStorageSelector],
+  ({ newTaskFormValues }: TodoStorageType) => newTaskFormValues,
+);

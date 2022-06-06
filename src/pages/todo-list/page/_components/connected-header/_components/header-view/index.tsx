@@ -2,7 +2,10 @@ import React, { memo } from 'react';
 import classnames from 'classnames/bind';
 import { ButtonLink } from '@wildberries/ui-kit';
 import i18next from 'i18next';
-import { SubmitClickHandlerParamsType } from '@/pages/todo-list/_types';
+import {
+  SubmitClickHandlerParamsType,
+  TodoType,
+} from '@/pages/todo-list/_types';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import { TodoCard } from '../../../todo-card';
@@ -17,6 +20,7 @@ type PropsType = {
   showFormForNewTask: boolean;
   onToggleFormOpened: () => void;
   isNewTaskCreating: boolean;
+  newTaskFormValues: TodoType;
 };
 
 export const HeaderView = memo(
@@ -25,6 +29,7 @@ export const HeaderView = memo(
     showFormForNewTask,
     onToggleFormOpened,
     isNewTaskCreating,
+    newTaskFormValues,
   }: PropsType) => {
     return (
       <div className={cn(BLOCK_NAME)}>
@@ -32,10 +37,12 @@ export const HeaderView = memo(
           <div className={cn(`${BLOCK_NAME}__card`)}>
             <TodoCard
               deleteClick={onToggleFormOpened}
-              id={null}
-              isDeleting={false}
-              isEditable
+              description={newTaskFormValues.description}
+              id={newTaskFormValues.id}
+              isDeleting={newTaskFormValues.isDeleting}
+              isEditable={newTaskFormValues.isEditable}
               isLoading={isNewTaskCreating}
+              name={newTaskFormValues.name}
               submitClick={onSubmitClick}
             />
           </div>

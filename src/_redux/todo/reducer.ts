@@ -1,5 +1,7 @@
 import {
+  resetNewTaskFormInitialValuesAction,
   setInitialTodoListAction,
+  setNewTaskFormInitialValuesAction,
   setTodoListAction,
   setUpdatedTodoItemAction,
   showFormForNewTaskAction,
@@ -15,6 +17,14 @@ export const initialState: TodoStorageType = {
   areTasksLoading: false,
   showFormForNewTask: false,
   isNewTaskCreating: false,
+  newTaskFormValues: {
+    id: null,
+    name: '',
+    description: '',
+    isDeleting: false,
+    isEditable: false,
+    isLoading: false,
+  },
 };
 
 const reducer = (
@@ -54,6 +64,22 @@ const reducer = (
       return {
         ...state,
         data: [],
+      };
+
+    case resetNewTaskFormInitialValuesAction.type:
+      return {
+        ...state,
+        newTaskFormValues: initialState.newTaskFormValues,
+      };
+
+    case setNewTaskFormInitialValuesAction.type:
+      return {
+        ...state,
+        newTaskFormValues: {
+          ...state.newTaskFormValues,
+          name: payload.name,
+          description: payload.description,
+        },
       };
 
     default:
