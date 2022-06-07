@@ -1,9 +1,9 @@
-import { LOCALHOST_ENDPOINT } from '../shared-urls';
+import { TODO_LIST_ENDPOINT } from '../shared-urls';
 
-export const getTodoListEndpoint = `${LOCALHOST_ENDPOINT}/todo/getTodoList`;
+export const getTodoListEndpoint = `${TODO_LIST_ENDPOINT}/getTodoList`;
 
-export const deleteTodoItemEndpoint = `${LOCALHOST_ENDPOINT}/todo/deleteTodoItem`;
+export const deleteTodoItemEndpoint = `${TODO_LIST_ENDPOINT}/deleteTodoItem`;
 
-export const updateTodoItemEndpoint = `${LOCALHOST_ENDPOINT}/todo/updateTodoItem`;
+export const updateTodoItemEndpoint = `${TODO_LIST_ENDPOINT}/updateTodoItem`;
 
-export const createTodoItemEndpoint = `${LOCALHOST_ENDPOINT}/todo/createTodoItem`;
+export const createTodoItemEndpoint = `${TODO_LIST_ENDPOINT}/createTodoItem`;
