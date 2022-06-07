@@ -71,6 +71,17 @@ export const TodoCard = memo(
       [isEditable, submitClick],
     );
 
+    const initialValuesForm = useMemo(() => {
+      return id
+        ? {
+            id,
+            name,
+            description,
+            isLoading,
+          }
+        : null;
+    }, [description, id, isLoading, name]);
+
     return (
       <div
         className={cn(BLOCK_NAME, {
@@ -78,7 +89,7 @@ export const TodoCard = memo(
         })}
       >
         <Form
-          initialValues={{ id, name, description, isLoading }}
+          initialValues={initialValuesForm}
           onSubmit={submitClickHandler}
           render={({ handleSubmit }) => (
             <form className={cn(`${BLOCK_NAME}__form`)} onSubmit={handleSubmit}>
