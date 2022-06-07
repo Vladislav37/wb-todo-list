@@ -18,7 +18,7 @@ rootRouter.use('/warehouses', warehousesRouter);
 rootRouter.use('/supplier-info', operatingAccountRouter);
 rootRouter.use('/I18N', i18nRouter);
 rootRouter.use('/suppliers', suppliersRouter);
-rootRouter.use('/todo', todoRouter);
+rootRouter.use('/tasks', todoRouter);
 rootRouter.use('/users', usersRouter);
 rootRouter.use('/legal-forms', legalFormsRouter);
 rootRouter.use('/statkey', statkeyRouter);

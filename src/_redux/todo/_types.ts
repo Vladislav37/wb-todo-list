@@ -2,12 +2,11 @@ import { TodoType } from '@/pages/todo-list/_types';
 import { REDUCER_TODOLIST_NAME } from './_constants';
 
 export type TodoStorageType = {
-  data: {
-    todos: Array<TodoType>;
-  };
+  data: Array<TodoType>;
   areTasksLoading: boolean;
   showFormForNewTask: boolean;
   isNewTaskCreating: boolean;
+  newTaskFormValues: TodoType;
 };
 
 export type TodoStoragePartType = {

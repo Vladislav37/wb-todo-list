@@ -2,11 +2,14 @@ import { setModalAction } from '@wildberries/notifications';
 import { call, put, select } from 'redux-saga/effects';
 import { initLoadManagerActionSaga } from '@mihanizm56/redux-core-modules';
 import i18next from 'i18next';
-import { deleteTodoItemRequest } from '@/api/requests/todo';
 import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fetch-todo-config';
-import { updateIsDeletingStateForTodoList } from '@/_utils/todo';
+import {
+  callSuccesNotification,
+  updateIsDeletingStateForTodoList,
+} from '@/_utils/todo';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
+import { deleteTodoItemRequest } from '@/api/requests/todo/delete-todo-item';
 import { todoListSelector } from '../../selectors';
 import { setUpdatedTodoItemAction } from '../../actions';
 
@@ -27,9 +30,11 @@ export function* deleteTodoItemWorkerSaga(id: string) {
       throw new Error(errorText);
     }
 
+    yield put(callSuccesNotification());
+
     yield put(
       initLoadManagerActionSaga({
-        requestConfigList: [fetchTodoConfig],
+        requestConfigList: [fetchTodoConfig()],
       }),
     );
   } catch (error) {

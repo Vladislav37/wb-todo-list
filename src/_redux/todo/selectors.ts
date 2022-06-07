@@ -9,7 +9,7 @@ export const todoListStorageSelector = (store: TodoStoragePartType) => {
 
 export const todoListSelector = createSelector(
   [todoListStorageSelector],
-  ({ data }: TodoStorageType) => data.todos,
+  ({ data }: TodoStorageType) => data,
 );
 
 export const areTasksLoadingSelector = createSelector(
@@ -25,4 +25,9 @@ export const showFormForNewTaskSelector = createSelector(
 export const isNewTaskCreatingSelector = createSelector(
   [todoListStorageSelector],
   ({ isNewTaskCreating }: TodoStorageType) => isNewTaskCreating,
+);
+
+export const newTaskFormValuesSelector = createSelector(
+  [todoListStorageSelector],
+  ({ newTaskFormValues }: TodoStorageType) => newTaskFormValues,
 );

@@ -1,5 +1,6 @@
 @import-normalize;
 
+/* global cra bug */
 iframe {
   display: none !important;
 }

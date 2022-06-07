@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchFormManagerSagaAction } from '@mihanizm56/redux-core-modules';
 import {
-  createTodoItemActionSaga,
   isNewTaskCreatingSelector,
+  newTaskFormValuesSelector,
   showFormForNewTaskAction,
   showFormForNewTaskSelector,
   TodoStoragePartType,
@@ -12,17 +13,21 @@ import {
   TodoType,
 } from '@/pages/todo-list/_types';
 import { HeaderView } from './_components/header-view';
+import { createTodoItemConfig } from './_utils/create-todo-item-config';
 
 type PropsType = {
-  handleCreateTask: (params: TodoType) => void;
+  fetchFormManager: typeof fetchFormManagerSagaAction;
   handleShowFormForNewTask: (params: boolean) => void;
   showFormForNewTask: boolean;
   isNewTaskCreating: boolean;
+  newTaskFormValues: TodoType;
 };
 
 class WrappedContainer extends Component<PropsType> {
   submitClickHandler = ({ values }: SubmitClickHandlerParamsType): void => {
-    this.props.handleCreateTask(values);
+    const config = createTodoItemConfig(values);
+
+    this.props.fetchFormManager(config);
   };
 
   handleToggleFormOpened = () => {
@@ -33,6 +38,7 @@ class WrappedContainer extends Component<PropsType> {
     return (
       <HeaderView
         isNewTaskCreating={this.props.isNewTaskCreating}
+        newTaskFormValues={this.props.newTaskFormValues}
         onSubmitClick={this.submitClickHandler}
         onToggleFormOpened={this.handleToggleFormOpened}
         showFormForNewTask={this.props.showFormForNewTask}
@@ -45,12 +51,12 @@ const mapStateToProps = (state: TodoStoragePartType) => {
   return {
     showFormForNewTask: showFormForNewTaskSelector(state),
     isNewTaskCreating: isNewTaskCreatingSelector(state),
+    newTaskFormValues: newTaskFormValuesSelector(state),
   };
 };
 
 const mapDispatchToProps = {
-  // use form manager from redux-core-modules
-  handleCreateTask: createTodoItemActionSaga,
+  fetchFormManager: fetchFormManagerSagaAction,
   handleShowFormForNewTask: showFormForNewTaskAction,
 };
 
