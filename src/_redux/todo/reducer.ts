@@ -41,7 +41,7 @@ const reducer = (
     case setUpdatedTodoItemAction.type:
       return {
         ...state,
-        data: [...payload],
+        data: payload,
       };
 
     case startCardInfoLoadingAction.type:
@@ -75,11 +75,7 @@ const reducer = (
     case setNewTaskFormInitialValuesAction.type:
       return {
         ...state,
-        newTaskFormValues: {
-          ...state.newTaskFormValues,
-          name: payload.name,
-          description: payload.description,
-        },
+        newTaskFormValues: payload,
       };
 
     default:

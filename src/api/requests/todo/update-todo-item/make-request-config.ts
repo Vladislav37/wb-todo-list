@@ -5,8 +5,6 @@ import { responseSchema } from './response-schema';
 
 export const makeRequestConfig = (item: TodoType): IRequestParams => ({
   endpoint: updateTodoItemEndpoint,
-  body: {
-    ...item,
-  },
+  body: item,
   responseSchema,
 });

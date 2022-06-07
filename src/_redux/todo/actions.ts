@@ -2,15 +2,15 @@ import { IReduxAction, IReduxBaseAction } from '@mihanizm56/redux-core-modules';
 import { TodoType } from '@/pages/todo-list/_types';
 import { TodoStorageType } from './_types';
 
-export const SET_TODOLIST = 'SET_TODOLIST';
+export const SET_TODO_LIST = 'SET_TODO_LIST';
 export const setTodoListAction: IReduxAction<
   TodoStorageType[],
-  typeof SET_TODOLIST
+  typeof SET_TODO_LIST
 > = (payload) => ({
-  type: SET_TODOLIST,
+  type: SET_TODO_LIST,
   payload,
 });
-setTodoListAction.type = SET_TODOLIST;
+setTodoListAction.type = SET_TODO_LIST;
 
 export const SET_INITIAL_TODOLIST = 'SET_INITIAL_TODOLIST';
 export const setInitialTodoListAction: IReduxBaseAction<
@@ -100,22 +100,20 @@ export const showFormForNewTaskAction: IReduxAction<
 });
 showFormForNewTaskAction.type = SHOW_FORM_FOR_NEW_TASK;
 
-export const RESET_NEW_TASK_FORM_INITIAL_VALUES =
-  'RESET_NEW_TASK_FORM_INITIAL_VALUES';
+export const RESET_INITIAL_VALUES = 'RESET_INITIAL_VALUES';
 export const resetNewTaskFormInitialValuesAction: IReduxBaseAction<
-  typeof RESET_NEW_TASK_FORM_INITIAL_VALUES
+  typeof RESET_INITIAL_VALUES
 > = () => ({
-  type: RESET_NEW_TASK_FORM_INITIAL_VALUES,
+  type: RESET_INITIAL_VALUES,
 });
-resetNewTaskFormInitialValuesAction.type = RESET_NEW_TASK_FORM_INITIAL_VALUES;
+resetNewTaskFormInitialValuesAction.type = RESET_INITIAL_VALUES;
 
-export const SET_NEW_TASK_FORM_INITIAL_VALUES =
-  'SET_NEW_TASK_FORM_INITIAL_VALUES';
+export const SET_INITIAL_VALUES = 'SET_INITIAL_VALUES';
 export const setNewTaskFormInitialValuesAction: IReduxAction<
   TodoType,
-  typeof SET_NEW_TASK_FORM_INITIAL_VALUES
+  typeof SET_INITIAL_VALUES
 > = (payload) => ({
-  type: SET_NEW_TASK_FORM_INITIAL_VALUES,
+  type: SET_INITIAL_VALUES,
   payload,
 });
-setNewTaskFormInitialValuesAction.type = SET_NEW_TASK_FORM_INITIAL_VALUES;
+setNewTaskFormInitialValuesAction.type = SET_INITIAL_VALUES;
