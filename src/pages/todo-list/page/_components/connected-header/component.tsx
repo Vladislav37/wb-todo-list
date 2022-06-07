@@ -25,7 +25,9 @@ type PropsType = {
 
 class WrappedContainer extends Component<PropsType> {
   submitClickHandler = ({ values }: SubmitClickHandlerParamsType): void => {
-    this.props.fetchFormManager(createTodoItemConfig(values));
+    const config = createTodoItemConfig(values);
+
+    this.props.fetchFormManager(config);
   };
 
   handleToggleFormOpened = () => {

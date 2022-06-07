@@ -10,4 +10,4 @@ export const getPortalEuEndpoint = (): string =>
 
 export const translationsEndpoint = `${getPortalEuEndpoint()}/I18N`;
 
-export const TODO_LIST_ENDPOINT = 'http://localhost:3000/tasks';
+export const TODO_LIST_ENDPOINT = '/tasks';
