@@ -13,7 +13,7 @@ import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import { updateTodoItemRequest } from '@/api/requests/todo/update-todo-item';
 import { todoListSelector } from '../../selectors';
-import { setUpdatedTodoItemAction } from '../../actions';
+import { setTodoListAction } from '../../actions';
 
 export function* updateTodoItemWorkerSaga(item: TodoType) {
   try {
@@ -24,7 +24,7 @@ export function* updateTodoItemWorkerSaga(item: TodoType) {
       isLoading: true,
     });
 
-    yield put(setUpdatedTodoItemAction(updatedLoadingTodos));
+    yield put(setTodoListAction(updatedLoadingTodos));
 
     const { error, errorText } = yield call(updateTodoItemRequest, item);
 
@@ -39,7 +39,7 @@ export function* updateTodoItemWorkerSaga(item: TodoType) {
       isEditable: false,
     });
 
-    yield put(setUpdatedTodoItemAction(updatedEditableTodos));
+    yield put(setTodoListAction(updatedEditableTodos));
 
     yield put(callSuccesNotification());
 
@@ -71,6 +71,6 @@ export function* updateTodoItemWorkerSaga(item: TodoType) {
       isLoading: false,
     });
 
-    yield put(setUpdatedTodoItemAction(updatedLoadingTodos));
+    yield put(setTodoListAction(updatedLoadingTodos));
   }
 }

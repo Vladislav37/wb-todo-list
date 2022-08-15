@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   areTasksLoadingSelector,
   deleteTodoItemActionSaga,
-  setUpdatedTodoItemAction,
+  setTodoListAction,
   todoListSelector,
   TodoStoragePartType,
   updateTodoItemActionSaga,
@@ -83,7 +83,7 @@ const mapStateToProps = (state: TodoStoragePartType) => {
 const mapDispatchToProps = {
   deleteTask: deleteTodoItemActionSaga,
   updateTask: updateTodoItemActionSaga,
-  setUpdatedTodos: setUpdatedTodoItemAction,
+  setUpdatedTodos: setTodoListAction,
 };
 
 export const ConnectedTodoCardList = connect(

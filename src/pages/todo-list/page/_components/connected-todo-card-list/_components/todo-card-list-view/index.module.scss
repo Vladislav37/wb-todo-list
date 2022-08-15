@@ -8,6 +8,7 @@
   height: calc(100% - 250px);
   justify-content: flex-start;
   overflow-y: auto;
+  scroll-behavior: smooth;
   width: 100%;
 
   &__item {
