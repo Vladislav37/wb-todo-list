@@ -12,7 +12,7 @@ import {
   SubmitClickHandlerParamsType,
   TodoType,
 } from '@/pages/todo-list/_types';
-import { updateIsEditableStateForTodoList } from '@/_utils/todo';
+import { updatePropertyState } from '@/_utils/todo/update-property-state';
 import { TodoCardListView } from './_components/todo-card-list-view';
 
 type PropsType = {
@@ -34,10 +34,11 @@ class WrappedContainer extends Component<PropsType> {
       return;
     }
 
-    const updatedEditableTodos = updateIsEditableStateForTodoList({
+    const updatedEditableTodos = updatePropertyState({
       items: this.props.todoList,
       currentId: values.id,
-      isEditable: true,
+      property: 'isEditable',
+      value: true,
     });
 
     this.props.setUpdatedTodos(updatedEditableTodos);
@@ -49,10 +50,11 @@ class WrappedContainer extends Component<PropsType> {
     )?.isEditable;
 
     if (isCardEditable) {
-      const updatedEditableTodos = updateIsEditableStateForTodoList({
+      const updatedEditableTodos = updatePropertyState({
         items: this.props.todoList,
         currentId: id,
-        isEditable: false,
+        property: 'isEditable',
+        value: false,
       });
 
       this.props.setUpdatedTodos(updatedEditableTodos);

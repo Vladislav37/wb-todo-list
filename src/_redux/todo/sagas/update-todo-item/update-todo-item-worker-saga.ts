@@ -4,24 +4,22 @@ import { call, put, select } from 'redux-saga/effects';
 import i18next from 'i18next';
 import { fetchTodoConfig } from '@/pages/todo-list/store-inject-config/_utils/fetch-todo-config';
 import { TodoType } from '@/pages/todo-list/_types';
-import {
-  callSuccesNotification,
-  updateIsEditableStateForTodoList,
-  updateIsLoadingStateForTodoList,
-} from '@/_utils/todo';
 import { APP_NAMESPACE } from '@/_constants/i18next/app-namespace';
 import { PAGE_SUB_NAMESPACE } from '@/pages/todo-list/_constants/translations/page-sub-namespace';
 import { updateTodoItemRequest } from '@/api/requests/todo/update-todo-item';
+import { callSuccesNotification } from '@/_utils/todo/call-success-notification';
+import { updatePropertyState } from '@/_utils/todo/update-property-state';
 import { todoListSelector } from '../../selectors';
 import { setTodoListAction } from '../../actions';
 
 export function* updateTodoItemWorkerSaga(item: TodoType) {
   try {
     const allTodos = yield select(todoListSelector);
-    const updatedLoadingTodos = updateIsLoadingStateForTodoList({
+    const updatedLoadingTodos = updatePropertyState({
       items: allTodos,
       currentId: item.id,
-      isLoading: true,
+      property: 'isLoading',
+      value: true,
     });
 
     yield put(setTodoListAction(updatedLoadingTodos));
@@ -33,10 +31,11 @@ export function* updateTodoItemWorkerSaga(item: TodoType) {
     }
 
     const allAfterUpdateTodos = yield select(todoListSelector);
-    const updatedEditableTodos = updateIsEditableStateForTodoList({
+    const updatedEditableTodos = updatePropertyState({
       items: allAfterUpdateTodos,
       currentId: item.id,
-      isEditable: false,
+      property: 'isEditable',
+      value: false,
     });
 
     yield put(setTodoListAction(updatedEditableTodos));
@@ -65,10 +64,11 @@ export function* updateTodoItemWorkerSaga(item: TodoType) {
     );
   } finally {
     const allTodos = yield select(todoListSelector);
-    const updatedLoadingTodos = updateIsLoadingStateForTodoList({
+    const updatedLoadingTodos = updatePropertyState({
       items: allTodos,
       currentId: item.id,
-      isLoading: false,
+      property: 'isLoading',
+      value: false,
     });
 
     yield put(setTodoListAction(updatedLoadingTodos));

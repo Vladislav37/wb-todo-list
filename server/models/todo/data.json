@@ -1,13 +1,7 @@
 [
   {
-    "id": "0t91g",
-    "name": "cdds",
-    "description": "fdsdfs",
-    "isLoading": false
-  },
-  {
     "id": "inVeu",
-    "name": "dasda",
+    "name": "dasda1",
     "description": "dsadsa",
     "isLoading": false
   },
@@ -15,12 +9,6 @@
     "id": "mN1Ru",
     "name": "dsadsa",
     "description": "dsadsa",
-    "isLoading": false
-  },
-  {
-    "id": "dr0A0",
-    "name": "fdsfd",
-    "description": "sdfsfd",
     "isLoading": false
   }
 ]
