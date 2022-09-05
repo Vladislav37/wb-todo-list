@@ -3,7 +3,6 @@ import {
   setInitialTodoListAction,
   setNewTaskFormInitialValuesAction,
   setTodoListAction,
-  setUpdatedTodoItemAction,
   showFormForNewTaskAction,
   startCardInfoLoadingAction,
   startCreatingNewTaskAction,
@@ -27,18 +26,17 @@ export const initialState: TodoStorageType = {
   },
 };
 
+type ActionsType = {
+  type: any;
+  payload?: any;
+};
+
 const reducer = (
   state: TodoStorageType = initialState,
-  { type, payload },
+  { type, payload }: ActionsType,
 ): TodoStorageType => {
   switch (type) {
     case setTodoListAction.type:
-      return {
-        ...state,
-        data: payload,
-      };
-
-    case setUpdatedTodoItemAction.type:
       return {
         ...state,
         data: payload,
