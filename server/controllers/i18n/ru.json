@@ -3,6 +3,8 @@
     "network-error": "Ошибка соединения"
   },
   "todoPage": {
+    "testKey": "тестовый перевод",
+    "testKeyWithLink": "тестовый перевод с компонентом {link}",
     "title": "Todo-List",
     "fields": {
       "name": "Наименование:",
