@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import classnames from 'classnames/bind';
-import { ButtonLink } from '@wildberries/ui-kit';
+import { ButtonLink, Text } from '@wildberries/ui-kit';
 import i18next from 'i18next';
 import {
   SubmitClickHandlerParamsType,
@@ -31,6 +31,16 @@ export const HeaderView = memo(
     isNewTaskCreating,
     newTaskFormValues,
   }: PropsType) => {
+    const testComponent = useMemo(() => {
+      return <span>123</span>;
+    }, []);
+    const textKey = `${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.testKey`;
+    const textKeyWithLink = `${APP_NAMESPACE}:${PAGE_SUB_NAMESPACE}.testKeyWithLink`;
+
+    const text = !showFormForNewTask
+      ? i18next.t(textKeyWithLink, { link: testComponent })
+      : i18next.t(textKey);
+
     return (
       <div className={cn(BLOCK_NAME)}>
         {showFormForNewTask ? (
@@ -56,6 +66,7 @@ export const HeaderView = memo(
             variant="add"
           />
         )}
+        <Text key=" text!" color="black" size="h3" text={text} />
       </div>
     );
   },
